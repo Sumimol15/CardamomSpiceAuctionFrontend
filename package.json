@@ -3,7 +3,6 @@
     "start": "node index",
     "build": "node index"
   },
-  {
   "dependencies": {
     "axios": "^1.6.1",
     "dotenv": "^16.3.1",
@@ -13,3 +12,4 @@
     "multer": "^1.4.5-lts.1"
   }
 }
+
