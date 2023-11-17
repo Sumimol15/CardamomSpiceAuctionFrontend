@@ -1,0 +1,8 @@
+<%- include('./layout/head.ejs') %>
+<%- include('./components/nav.ejs',{session:session}) %>
+
+<% console.log(session.state.spices,'sesss!!!!!!!!!!!!!!!!!!!!!!!!!!'); %>
+<%- include('./components/auctionHeader.ejs',{session:session}) %>
+<%- include('./components/auctionCompanySpecificSpiceGridLayout.ejs',{session:session}) %>
+<%- include('./components/footer.ejs')  %>
+<%- include('./layout/close.ejs') %>

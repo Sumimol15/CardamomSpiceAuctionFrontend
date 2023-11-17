@@ -1,0 +1,119 @@
+<% if (session.state.page == 'login' && session.state.userType !== 'company') { %>
+
+<div class="loginLayout">
+    <div class="auth">
+        <div class="header" style="border: none;">Login</div>
+        <div class="description">
+        <div class="content">Enter your credential below to login to your</div>
+        <div class="content">account</div>
+        </div>
+        <form class="formLogin" action="/user/login" method="post">
+            <input type="text" name="email" placeholder="Enter your email email">
+            <input type="password" name="password" placeholder="Enter Your Password">
+            <button class="loginBotton" type="submit">Login</button>
+            <div class="frame">
+                <div class="seperator"></div>
+                <div class="content">Or Not a user</div>
+       
+            </div>
+            <button class="SignupButton"><a class="redirectAuth" href="/user/register">Signup</a></button>
+        </form>
+        <div class="footerLogin">
+            <div>By clicking continue, you agree to our</div>
+            <div class="inlineFooterDiscription"><div>Terms of Service</div><div>and</div><div>Privacy Policy.</div>
+        </div>
+        </div>
+    </div>
+</div>
+<% } else if (session.state.page == 'register' && session.state.userType  !== 'company') { %>
+
+<div class="loginLayout">
+    <div class="auth">
+        <div class="header">Create an account</div>
+        <div class="description">
+        <div class="content">Enter your credential below to create your</div>
+        <div class="content">account</div>
+        </div>
+        <form class="formLogin" action="/user/register" method="post">
+            <input name="firstName" type="text" placeholder="Enter your firstName">
+            <input name="lastName" type="text" placeholder="Enter your lastName">
+            <input name="email" type="text" placeholder="Enter your email">
+            <input name="mobileNumber" type="text" placeholder="Enter your mobileNumber">
+            <input name="password" type="password" placeholder="Enter Your Password">
+            <input name="rePassword" type="password" placeholder="Re-enter Your Password">
+            <button class="loginBotton" type="submit">Signup</button>
+            <div class="frame">
+                <div class="seperator"></div>
+                <div class="content">Or Already a user</div>
+            </div>
+            <button class="SignupButton"><a class="redirectAuth" href="/user/login">Login</a></button>
+        </form>
+        <div class="footerLogin">
+            <div>By clicking continue, you agree to our</div>
+            <div class="inlineFooterDiscription"><div>Terms of Service</div><div>and</div><div>Privacy Policy.</div>
+        </div>
+        </div>
+    </div>
+</div>
+<% } else if (session.state.page == 'companylogin' && session.state.userType !== 'user') { %>
+    <% console.log(session.state,'jrkgerhrefe'); %>
+ <div class="loginLayout">
+     <div class="auth">
+        <div class="header">Login</div>
+        <div class="description">
+        <div class="content">Enter your credential below to login to your</div>
+        <div class="content">account</div>
+        </div>
+         <form class="formLogin" action="/company/login" method="post">
+            <input type="text" name="companyName" placeholder="Enter your companyName">
+            <input type="password" name="password" placeholder="Enter Your Password">
+            <button class="loginBotton" type="submit">Login</button>
+            <div class="frame">
+                <div class="seperator"></div>
+                <div class="content">Or Not a user</div>
+       
+            </div>
+            <button class="SignupButton"><a class="redirectAuth" href="/company/register">Signup</a></button>
+        </form>
+        <div class="footerLogin">
+            <div>By clicking continue, you agree to our</div>
+            <div class="inlineFooterDiscription"><div>Terms of Service</div><div>and</div><div>Privacy Policy.</div>
+        </div>
+         </div>
+     </div>
+ </div>
+ <% } else { %>
+<div class="loginLayout">
+    <div class="auth">
+        <div class="header">Create an account</div>
+        <div class="description">
+        <div class="content">Enter your credential below to create your</div>
+        <div class="content">account</div>
+        </div>
+        <form class="formLogin" action="/company/register" method="post">
+            <input name="companyName" type="text" placeholder="Enter your companyName">
+            <input name="registrationNumber" type="number" placeholder="Enter your registrationNumber">
+            <input name="email" type="text" placeholder="Enter your email">
+            <input name="phone" type="text" placeholder="Enter your phone">
+            <input name="state" type="text" placeholder="Enter your state">
+            <input name="district" type="text" placeholder="Enter your district">
+            <input name="locality" type="text" placeholder="Enter your locality">
+            <input name="password" type="password" placeholder="Enter Your Password">
+            <input name="rePassword" type="password" placeholder="Re-enter Your Password">
+            <button class="loginBotton" type="submit">Signup</button>
+            <div class="frame">
+                <div class="seperator"></div>
+                <div class="content">Or Already a user</div>
+       
+            </div>
+            <button class="SignupButton"><a class="redirectAuth" href="/company/login">Login</a></button>
+            
+        </form>
+        <div class="footerLogin">
+            <div>By clicking continue, you agree to our</div>
+            <div class="inlineFooterDiscription"><div>Terms of Service</div><div>and</div><div>Privacy Policy.</div>
+        </div>
+        </div>
+    </div>
+</div>
+<% } %>

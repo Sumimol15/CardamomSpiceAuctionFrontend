@@ -1,0 +1,40 @@
+<div class="header">
+    <h2 class="title">Auctions</h2>
+    <div class="content">
+        <div class="auctions">
+            All
+            Auctions
+        </div>
+
+    </div>
+</div>
+<script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const Add = document.querySelector('.Add');
+        const spice =  document.querySelector('.spice');
+        const auction = document.querySelector('.auction');
+        const spices = document.querySelector('.spices');
+        const auctions = document.querySelector('.auctions');
+
+        Add.addEventListener('click', () => {
+        const add =  document.querySelector('.add');
+        if (add) {
+            add.classList.toggle('visible');
+            auction.classList.toggle('hide');
+        } else {
+            console.error('Element with class "add" not found.');
+        }
+    })
+    auctions.addEventListener('click', () => {
+        const auction =  document.querySelector('.auction');
+        if (auction) {
+            auction.classList.toggle('visible');
+            spice.classList.toggle('hide');
+        } else {
+            console.error('Element with class "add" not found.');
+        }
+    })
+
+ 
+      });
+</script>

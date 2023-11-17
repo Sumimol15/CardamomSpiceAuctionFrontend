@@ -1,0 +1,106 @@
+<form class="profileEdit"  method="post" action="/company/profile" enctype="multipart/form-data">
+  <h4>Add A Post</h4>
+  <div class="description">Enter All the necessory details</div>
+  <label for="companyName">Company name</label>
+  <input type="text" name="companyName"  value="<%= session.state.user.companyName %>">
+  <label for="registrationNumber">Registration number</label>
+  <input type="text" name="registrationNumber" value="<%= session.state.user.registrationNumber %>">
+  <label for="state">state</label>
+  <input type="text" name="state" value="<%= session.state.user.state %>">
+  <label for="district">district</label>
+  <input type="text" name="district" value="<%= session.state.user.district %>">
+  <label for="locality">locality</label>
+  <input type="text" name="locality" value="<%= session.state.user.locality %>">
+  <label for="photo">Profile Image</label>
+  <input type="file" name="photo" id="photoInput">
+  <img id="imagePreview" src="#" alt="Image Preview" style="max-width: 200px; display: none;">
+  
+  <label for="number">number</label>
+  <input type="number" name="phone" value="<%= session.state.user.phone %>">
+  <label for="email">email</label>
+  <input type="text" name="email" value="<%= session.state.user.email %>">
+    
+    <div class="buttonHolder">
+        <div class="cancel">Cancel</div>
+        <button class="submit" type="submit">Submit</button>
+    </div>
+</form>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      console.log('reached the end of the page');
+    const registrationForm = document.querySelector(".profileEdit");
+
+    registrationForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+      const companyName = registrationForm.querySelector('input[name="companyName"]').value;
+      const registrationNumber = registrationForm.querySelector('input[name="registrationNumber"]').value;
+      const state = registrationForm.querySelector('input[name="state"]').value;
+      const district = registrationForm.querySelector('input[name="district"]').value;
+      const locality = registrationForm.querySelector('input[name="locality"]').value;
+      const email = registrationForm.querySelector('input[name="email"]').value;
+      const phone = registrationForm.querySelector('input[name="phone"]').value;
+      const photoInput = document.querySelector('input[name="photo"]');
+      const photo = photoInput.files[0];                  
+      let isFormValid = true;
+
+      if (!companyName.trim()) {
+        Swal.fire("Error", "Company name is required", "error");
+        isFormValid = false;
+      }
+      if (!registrationNumber.trim()) {
+        Swal.fire("Error", "Registration number is required", "error");
+        isFormValid = false;
+      }
+      if (!state.trim()) {
+        Swal.fire("Error", "state is required", "error");
+        isFormValid = false;
+      }
+      if (!district.trim()) {
+        Swal.fire("Error", "district is required", "error");
+        isFormValid = false;
+      }
+      if (!locality.trim()) {
+        Swal.fire("Error", "locality is required", "error");
+        isFormValid = false;
+      }
+      if (!email.trim() || !isValidEmail(email)) {
+        Swal.fire("Error", "Valid Email is required", "error");
+        isFormValid = false;
+      }
+      if (!phone.trim()) {
+        Swal.fire("Error", "phone is required", "error");
+        isFormValid = false;
+      }
+      if (isFormValid) {
+        registrationForm.submit();
+      }
+
+      function isValidEmail(email) {
+        const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+        return emailPattern.test(email);
+      }
+    });
+  });
+
+  document.getElementById('photoInput').addEventListener('change', function () {
+  var imagePreview = document.getElementById('imagePreview');
+  var fileInput = this;
+
+  if (fileInput.files && fileInput.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+          imagePreview.src = e.target.result;
+          imagePreview.style.display = 'block';
+      };
+
+      reader.readAsDataURL(fileInput.files[0]);
+  } else {
+      imagePreview.src = '#';
+      imagePreview.style.display = 'none';
+  }
+});
+
+</script>

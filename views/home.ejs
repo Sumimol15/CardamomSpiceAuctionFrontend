@@ -1,0 +1,16 @@
+<%- include('./layout/head.ejs')  %>
+<% console.log(session,'rekjhrehre'); %>
+<%- include('./components/nav.ejs', {session:session})  %>
+<% if (typeof message !== 'undefined') { %>
+    <script>
+    Swal.fire("success", "<%- message %>", "success");
+</script>
+<% } %>
+<main>
+    <section class="welcome">
+        <h1>Welcome to Spices Auction</h1>
+        <p>Explore and bid on a wide range of spices from sellers all around the world.</p>
+    </section>
+</main>
+<%- include('./components/footer.ejs')  %>
+<%- include('./layout/close.ejs')  %>

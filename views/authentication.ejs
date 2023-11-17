@@ -1,0 +1,9 @@
+<%- include('./layout/head.ejs') %>
+<%- include('./components/authForm.ejs', {session:session}) %>
+<% if (typeof message !== 'undefined') { %>
+    <script>
+    Swal.fire("error", "<%- message %>", "error");
+</script>
+<% } %>
+
+<%- include('./layout/close.ejs') %>

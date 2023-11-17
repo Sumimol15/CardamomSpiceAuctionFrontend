@@ -1,0 +1,25 @@
+<form class="form add" action="/company/addAnAuction" method="post">
+    <h4>Add A Post</h4>
+    <div class="description">Enter All the necessory details</div>
+    <label for="name">Company Name</label>
+    <input type="text" name="companyName"  value="<%= session.state.company.companyName %>" readonly>
+    <label for="startDate">auctionDate</label>
+    <input type="date" name="startDate">
+    <label for="endDate">endTime</label>
+    <input type="date" name="endDate">    
+    <div class="buttonHolder">
+        <button  class="cancel" type="reset">Cancel</button>
+        <button type="submit" class="submit">Submit</div>
+    </div>
+</form>
+
+
+<script>
+    document.querySelector('.cancel').addEventListener('click', () => {
+        console.log('reached here');
+        const userEditFormContainer = document.querySelector('.addASpice');
+        if (userEditFormContainer) {
+            userEditFormContainer.classList.toggle('hidden');
+        }
+    });
+</script>

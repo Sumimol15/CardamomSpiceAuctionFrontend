@@ -1,0 +1,91 @@
+<% function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', options);
+} %>
+
+
+<form class="form add" action="/user/addASpice" method="post" enctype="multipart/form-data" style="background-color: white;">
+    <h4>Add A Post</h4>
+    <div class="description">Enter All the necessory details</div>
+    <label for="sellerId" hidden>sellerId</label>
+    <input type="text" name="sellerId" value=<%= session.state.user._id %> hidden>
+    <label for="weight">weight</label>
+    <input type="text" name="weight">
+    <label for="companyName">
+        <h3 style="font-size: 18px; margin-bottom: 10px;">Here we have provided both Companies and Auction Time which Are Available</h3>
+    </label>
+    <select name="companyName" style="width: 100%; padding: 8px; font-size: 16px;">
+        <option value="" style="font-style: italic; color: #999;">Select a Available Company</option>
+        <% session.state.companies.forEach(function(company) { %>
+            <option value="<%= company.companyName + '|' + company.startDate + '|' + company.endDate %>"
+                    style="font-weight: bold;">
+               🏭 <h3><%= company.companyName %> </h3>  (Start:🏁 <%= formatDate(company.startDate) %>, End:⏰ <%= formatDate(company.endDate) %>)
+            </option>
+        <% }); %>
+    </select>
+    
+    
+    <label for="photo">Profile Image</label>
+    <input type="file" name="photo" class="photoInput">
+    <img class="imagePreviews" src="#" alt="Image Preview" style="max-width: 200px; display: none;">
+    
+    <label for="spiceType">spiceType</label>
+    <select name="spiceType" id="spiceType">
+        <option value="cardamon">cardamon</option>
+    </select>
+    <label for="quality">Quality</label>
+    <div id="quality">
+        <label for="grade">Grade</label>
+        <select name="quality.grade">
+            <option value="A+">A+</option>
+            <option value="A">A</option>
+            <option value="B+">B+</option>
+            <option value="B">B</option>
+        </select>
+        <label for="colour">Colour</label>
+        <input type="text" name="quality.colour">
+        <label for="size">Size</label>
+        <input type="text" name="quality.size">
+    </div>
+    <label for="minimumPrice">minimumPrice</label>
+    <input type="number" name="minimumPrice">
+    
+    <div class="buttonHolder">
+        <button  class="cancel" type="reset">Cancel</button>
+        <button type="submit" class="submit">Submit</div>
+    </div>
+</form>
+
+
+<script>
+  
+    document.querySelector('.cancel').addEventListener('click', () => {
+        console.log('reached here');
+        const userEditFormContainer = document.querySelector('.addASpice');
+        if (userEditFormContainer) {
+            userEditFormContainer.classList.toggle('hidden');
+        }
+    });
+    document.querySelector('.photoInput').addEventListener('change', function () {
+              var imagePreview = document.querySelector('.imagePreviews');
+              var fileInput = this;
+          
+              if (fileInput.files && fileInput.files[0]) {
+                  var reader = new FileReader();
+          
+                  reader.onload = function (e) {
+                      imagePreview.src = e.target.result;
+                      imagePreview.style.display = 'block';
+                  };
+          
+                  reader.readAsDataURL(fileInput.files[0]);
+              } else {
+                  imagePreview.src = '#';
+                  imagePreview.style.display = 'none';
+              }
+});
+
+
+   
+</script>

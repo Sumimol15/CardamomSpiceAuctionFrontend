@@ -1,0 +1,90 @@
+<form class="profileEdit"  method="post" action="" enctype="multipart/form-data">
+    <h4>Add A Post</h4>
+
+    <div class="description">Enter All the necessory details</div>
+    <label for="firstName">first name</label>
+    <input type="text" name="firstName" value="<%= session.state.user.firstName %>">
+    <label for="lastName">last name</label>
+    <input type="text" name="lastName" value="<%= session.state.user.lastName %>">
+    <label for="email">email</label>
+    <input type="text" name="email" value="<%= session.state.user.email %>">
+    <label for="mobileNumber">mobileNumber</label>
+    <input type="text" name="mobileNumber" value="<%= session.state.user.mobileNumber %>">
+
+    <label for="photo">Profile Image</label>
+    <input type="file" name="photo" id="photoInput">
+    <img id="imagePreview" src="#" alt="Image Preview" style="max-width: 200px; display: none;">
+    
+    <label for="userType">User type</label>
+    <select id="userType" name="userType">
+        <option value="<%= session.state.user.userType %>"><%= session.state.user.userType %></option>
+        <option value="seller">Seller</option>
+        <option value="buyer">Buyer</option>
+    </select>
+    
+    <div class="buttonHolder">
+        <div class="cancel">Cancel</div>
+        <button class="submit" type="submit">Submit</button>
+    </div>
+</form>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        console.log('reached the end of the page');
+      const registrationForm = document.querySelector(".profileEdit");
+  
+      registrationForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+  
+        const firstName = registrationForm.querySelector('input[name="firstName"]').value;
+        const lastName = registrationForm.querySelector('input[name="lastName"]').value;
+        const email = registrationForm.querySelector('input[name="email"]').value;
+        const mobileNumber = registrationForm.querySelector('input[name="mobileNumber"]').value;
+        let isFormValid = true;
+  
+        if (!firstName.trim()) {
+          Swal.fire("Error", "First Name is required", "error");
+          isFormValid = false;
+        }
+        if (!lastName.trim()) {
+          Swal.fire("Error", "Last Name is required", "error");
+          isFormValid = false;
+        }
+        if (!email.trim() || !isValidEmail(email)) {
+          Swal.fire("Error", "Valid Email is required", "error");
+          isFormValid = false;
+        }
+        if (!mobileNumber.trim()) {
+          Swal.fire("Error", "Mobile Number is required", "error");
+          isFormValid = false;
+        }
+        if (isFormValid) {
+          registrationForm.submit();
+        }
+
+        function isValidEmail(email) {
+          const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+          return emailPattern.test(email);
+        }
+      });
+    });
+    document.getElementById('photoInput').addEventListener('change', function () {
+      var imagePreview = document.getElementById('imagePreview');
+      var fileInput = this;
+  
+      if (fileInput.files && fileInput.files[0]) {
+          var reader = new FileReader();
+  
+          reader.onload = function (e) {
+              imagePreview.src = e.target.result;
+              imagePreview.style.display = 'block';
+          };
+  
+          reader.readAsDataURL(fileInput.files[0]);
+      } else {
+          imagePreview.src = '#';
+          imagePreview.style.display = 'none';
+      }
+});
+  </script>

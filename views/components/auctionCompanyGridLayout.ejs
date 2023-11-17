@@ -1,0 +1,68 @@
+<% function formatDate(dateString) {
+  const options = { year: 'numeric', month: 'short', day: 'numeric' };
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', options);
+} %>
+
+
+
+<div class="layout">
+    <div class="header" >
+      <div class="profileHeader" style="background-image: url('/public/backer.jpeg'); background-size: cover; background-repeat: no-repeat; background-position: center center; height: 100%;width: 100%;display: flex; justify-content: center;align-items: center; padding: 5px;border-radius: 6px;flex-direction: column; ">
+
+       <h3 style="color: white;">All companies Listing </h3>
+       <p style="color: rgb(214, 174, 174);">For Cardamon</p>
+</div>
+    </div>
+    <div class="body ">
+
+<!-- auction -->
+            <% for (const company of session.state.companies) { %>
+              <% const companyStartDate = new Date(company.startDate);
+              companyStartDate.setHours(0, 0, 0, 0);
+              const currentDate = new Date(Date.now());
+              currentDate.setHours(0, 0, 0, 0);%>
+               <% const companyEndDate = new Date(company.endDate);
+               companyEndDate.setHours(0, 0, 0, 0);%>
+           
+           <% if (companyStartDate.getTime() <= currentDate.getTime() && companyEndDate.getTime() >= currentDate.getTime()) { %>
+
+              <div class="card">
+            <div class="cardHead">
+              <div class="profileHeader" style="background-image: url('/public/backer.jpeg'); background-size: cover; background-repeat: no-repeat; background-position: center center; height: 80px;width: 80px; border-radius: 360px;">
+              </div>
+            </div>
+        
+            <div class="main">
+              <div class="cardBody">
+                <div class="contents">Name: <%= company.companyName %></div>
+                <div class="contents">auctionDate: <%= formatDate(company.startDate) %></div>
+                <div class="contents">endTime: <%= formatDate(company.endDate) %></div>
+              </div>
+              <div class="footer">
+                <button class="Edit" id='<%= company._id %>'>🔖Show Cardamon </button>
+              </div>
+            </div>
+            </div>
+
+            <script>
+              document.getElementById('<%= company._id %>').addEventListener('click', () => {
+                console.log('reacehded');
+                   const request = new XMLHttpRequest();   
+                   console.log('reacehded');
+                   request.open('POST', '/user/auction/getByCompanyNameAndDate', true);
+                  request.setRequestHeader('Content-Type', 'application/json');
+                  console.log('1');
+                  request.send(JSON.stringify({ companyName: '<%= company.companyName %>', auctionDate: '<%= company.startDate %>', endTime: '<%= company.endDate %>' }));
+                  console.log('1');
+         
+                  location.replace('/user/auction/spice')
+              });
+          </script>
+            <% } %>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+
