@@ -6,6 +6,24 @@
   font-variation-settings: normal;
 }
 
+@keyframes gradientAnimation {
+  0% {
+   background: linear-gradient(90deg, #7b54f2, #ff667e, #ffab6f);
+   -webkit-background-clip: text;
+
+  }
+  50% {
+    background: linear-gradient(90deg, #ffab6f, #7b54f2, #ff667e);
+    -webkit-background-clip: text;
+
+  }
+  100% {
+    background: linear-gradient(90deg, #7b54f2, #ff667e, #ffab6f);
+    -webkit-background-clip: text;
+
+  }
+}
+
 .main {
   max-width: 800px;
   margin: 20px auto;
@@ -51,6 +69,7 @@ nav {
   padding: 6px;
   border: 1px solid rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
   border: 0.5px solid #e5e7eb;
+  
 }
 
 
@@ -83,11 +102,18 @@ nav .content {
 nav .content div {
   padding: 3px;
   border-radius: 10px;
+  transition: border 0.3s ease; 
 }
 
 nav .content div:hover {
   background-color: #f1f5f9;
   cursor: pointer;
+  animation: gradientAnimation 3s linear infinite;
+  background: linear-gradient(90deg, #7b54f2, #ff667e, #ffab6f);
+  -webkit-background-clip: text;
+  color: transparent; 
+
+  
 }
 
 
@@ -98,7 +124,7 @@ nav .loginBox {
   align-items: center;
   gap: 10px;
   border: 0.2px solid #e5e7eb;
-  border-radius:6px;
+
 }
 nav .loginBox .themeMode {
   display: flex;
@@ -117,15 +143,19 @@ nav .loginBox .menu {
   box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
   padding: 5px;
   border-radius: 6px;
+
+
 }
 nav .loginBox .themeMode .day {
   display: flex;
   align-items: center;
   justify-content: center;
+ 
 }
 
 nav .loginBox .themeMode:hover {
   background-color: #f1f5f9;
+  
 }
 
 
@@ -136,10 +166,12 @@ nav .loginBox .login {
 
   box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
   border-radius: 6px;
+  
 }
 
 nav .loginBox .night {
   display: none;
+
 }
 
 .dropDown {
@@ -162,6 +194,10 @@ nav .loginBox .night {
 .dropDown .content div:hover {
   background-color: #363636;
   cursor: pointer;
+  animation: gradientAnimation 3s linear infinite;
+  background: linear-gradient(90deg, #7b54f2, #ff667e, #ffab6f);
+  -webkit-background-clip: text;
+  color: transparent; 
 }
 
 
@@ -183,11 +219,19 @@ nav .loginBox .night {
   border: 1px solid rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
   border: 0.5px solid #e5e7eb;
   border-radius: 6px;
+
 }
 .loginDropDown .content div:hover {
   background-color: #363636;
-  cursor: pointer;
+  cursor: pointer; 
+  color: white;
+  border: 2px solid;
+  border-image: linear-gradient(90deg, #7b54f2, #ff667e, #ffab6f) 1;
+  border-image-slice: 1;
+  animation: gradientAnimation 3s linear infinite;
 }
+
+
 
 .loginDropDown.visible {
   display: flex;
@@ -821,5 +865,8 @@ border: 0.5px solid #8b8b8b;
 .darkMode nav .loginBox .themeMode:hover {
   background-color: #363636;
 };
+
+
+
 
 
