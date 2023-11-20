@@ -1,6 +1,11 @@
 <%- include('./layout/head.ejs')  %>
 <% console.log(session,'rekjhrehre'); %>
 <%- include('./components/nav.ejs', {session:session})  %>
+<% function formatDate(dateString) {
+  const options = { year: 'numeric', month: 'short', day: 'numeric' };
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', options);
+} %>
 <% if (typeof message !== 'undefined') { %>
     <script>
     Swal.fire("success", "<%- message %>", "success");
@@ -27,20 +32,29 @@
             /* padding-left: 61px; */
         ">Auction</div>
          <div style="display: flex;flex-direction: column;">
-          <p style="display: flex;justify-content:flex-start;color: #fff;font-size: larger;font-weight: 100;">
-            abeffebfefgdfgdfgdfgdfgfgddfgdfgddfgdfgdfgdfgfgddfgdfgdgdfghdghgdfghdgh</p>
+          <p style="display: flex;justify-content:flex-start;color: #fff;font-size:x-large;font-weight: 100;">
+            Cardamom auction live  accross the world </p>
             <p style="display: flex;justify-content:flex-start;color: #fff;font-size: larger;font-weight: 100;">
-              abeffebfefgdfgdfgdfgdfgfgddfgdfgddfgdfgdfgdfgfgddfgdfgdgdfghdghgdfghdgh</p>
+              Available 24/7 only on spice-auction</p>
          </div>
-         <div style="width: fit-content;" class="button-border-half">More Knows</div>
+         <div style="width: fit-content;" class="button-border-half" onclick="scrollToHeight(1500)">More Knows</div>
+         <script>
+          function scrollToHeight(height) {
+           window.scrollTo({
+              top: height,
+              behavior: 'smooth'
+            });
+          }
+        </script>
           </div>
           <div style="display: flex;justify-content: flex-end;color: #fff;font-size: larger;font-weight: 100;">
-          18/Nov/2023</div>
+            <%= formatDate(new Date().getTime()) %>
+          </div>
         </div>
                
         <div class="bullet-point"></div>
 <div class="bullet-point"></div>
-<div class="custom-text">Live Auction -- Idukki </div>
+<div class="custom-text">Live Auction -- Idukki at    <%= formatDate(new Date().getTime()) %> </div>
        </div>
     </section>
 
@@ -51,129 +65,150 @@
       <div class="threeD2" style="margin-top: 100px;"></div>
 
       <div style="display: flex;justify-content: space-between; padding: 50px;">
-       <section class="carousel" aria-label="Gallery" style="height: 100;width: 30%;">
-         <ol class="carousel__viewport">
-           <li id="carousel__slide1"
-               tabindex="0"
-               class="carousel__slide">
-             <div class="carousel__snapper">
-               <a href="#carousel__slide4"
-                  class="carousel__prev">Go to last slide</a>
-               <a href="#carousel__slide2"
-                  class="carousel__next">Go to next slide</a>
-             </div>
-           </li>
-           <li id="carousel__slide2"
-               tabindex="0"
-               class="carousel__slide">
-             <div class="carousel__snapper"></div>
-             <a href="#carousel__slide1"
-                class="carousel__prev">Go to previous slide</a>
-             <a href="#carousel__slide3"
-                class="carousel__next">Go to next slide</a>
-           </li>
-           <li id="carousel__slide3"
-               tabindex="0"
-               class="carousel__slide">
-             <div class="carousel__snapper"></div>
-             <a href="#carousel__slide2"
-                class="carousel__prev">Go to previous slide</a>
-             <a href="#carousel__slide4"
-                class="carousel__next">Go to next slide</a>
-           </li>
-           <li id="carousel__slide4"
-               tabindex="0"
-               class="carousel__slide">
-             <div class="carousel__snapper"></div>
-             <a href="#carousel__slide3"
-                class="carousel__prev">Go to previous slide</a>
-             <a href="#carousel__slide1"
-                class="carousel__next">Go to first slide</a>
-           </li>
-         </ol>
-         <aside class="carousel__navigation">
-           <ol class="carousel__navigation-list">
-             <li class="carousel__navigation-item">
-               <a href="#carousel__slide1"
-                  class="carousel__navigation-button">Go to slide 1</a>
-             </li>
-             <li class="carousel__navigation-item">
-               <a href="#carousel__slide2"
-                  class="carousel__navigation-button">Go to slide 2</a>
-             </li>
-             <li class="carousel__navigation-item">
-               <a href="#carousel__slide3"
-                  class="carousel__navigation-button">Go to slide 3</a>
-             </li>
-             <li class="carousel__navigation-item">
-               <a href="#carousel__slide4"
-                  class="carousel__navigation-button">Go to slide 4</a>
-             </li>
-           </ol>
-         </aside>
-       </section>
+        <!-- corousel one -->
+        <section class="carousel" aria-label="Gallery" style="height: 100;width: 20%;">
+          <% const numberOfSlides = 4; %>
+          <ol class="carousel__viewport" id="carouselViewport">
+            <% if (typeof ( session.state.homeSpice) !== 'undefined') { %>
+
+            <% for (const spice of session.state.homeSpice) { %>
+              <% for (let i = 1; i <= numberOfSlides; i++) { %>
+                <li class="carousel__slide" id="carousel__slide<%= i %>" tabindex="0">
+                  <div class="carousel__snapper"></div>
+                  <a href="#carousel__slide<%= i === 1 ? numberOfSlides : i - 1 %>" class="carousel__prev">Go to previous slide</a>
+                  <a href="#carousel__slide<%= i === numberOfSlides ? 1 : i + 1 %>" class="carousel__next">Go to next slide</a>
+                  
+                  <div class="card" style="color: #fff;">
+                    <div class="cardHead">
+                      <div class="profileHeader" style="background-image: url('/public/<%= spice.photo.filename %>'); background-size: cover; background-repeat: no-repeat; background-position: center center; height: 80px;width: 80px; border-radius: 360px;"></div>
+                    </div>
+        
+                    <div class="main">
+                      <div class="cardBody">
+                        <div class="contents">Name: <%= spice.name %></div>
+                        <div class="contents">Managed By: <%= spice.companyName %></div>
+                        <div class="contents">Weight: <%= spice.weight %> grams</div>
+                        <div class="contents">Auction Date: <%= formatDate(spice.auctionDate) %></div>
+                        <div class="contents">End Time: <%= formatDate(spice.endTime) %></div>
+                        <div class="contents">Minimum Price: <%= spice.minimumPrice %></div>
+                      </div>
+                      <div class="footer"></div>
+                    </div>
+                  </div>
+                </li>
+              <% } %>
+            <% } %>
+            <% } %>
+          </ol>
+        
+          <aside class="carousel__navigation">
+            <ol class="carousel__navigation-list" id="carouselNavigationList"></ol>
+          </aside>
+        
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              const carouselViewport = document.getElementById('carouselViewport');
+              const carouselNavigationList = document.getElementById('carouselNavigationList');
+        
+              for (let i = 1; i <= numberOfSlides; i++) {
+                const slideElement = document.createElement('li');
+                slideElement.id = `carousel__slide${i}`;
+                slideElement.tabIndex = 0;
+                slideElement.className = 'carousel__slide';
+                slideElement.innerHTML = `
+                  <div class="carousel__snapper"></div>
+                  <a href="#carousel__slide${i === 1 ? numberOfSlides : i - 1}" class="carousel__prev">Go to previous slide</a>
+                  <a href="#carousel__slide${i === numberOfSlides ? 1 : i + 1}" class="carousel__next">Go to next slide</a>
+                `;
+                carouselViewport.appendChild(slideElement);
+        
+                const navigationItem = document.createElement('li');
+                navigationItem.className = 'carousel__navigation-item';
+                navigationItem.innerHTML = `
+                  <a href="#carousel__slide${i}" class="carousel__navigation-button">Go to slide ${i}</a>
+                `;
+                carouselNavigationList.appendChild(navigationItem);
+              }
+            });
+          </script>
+        </section>
+        
+        
+        
        <!-- corousel two -->
        <section class="carousel" aria-label="Gallery" style="height: 100;width: 20%;">
-         <ol class="carousel__viewport">
-           <li id="carousel__slide1"
-               tabindex="0"
-               class="carousel__slide">
-             <div class="carousel__snapper">
-               <a href="#carousel__slide4"
-                  class="carousel__prev">Go to last slide</a>
-               <a href="#carousel__slide2"
-                  class="carousel__next">Go to next slide</a>
-             </div>
-           </li>
-           <li id="carousel__slide2"
-               tabindex="0"
-               class="carousel__slide">
-             <div class="carousel__snapper"></div>
-             <a href="#carousel__slide1"
-                class="carousel__prev">Go to previous slide</a>
-             <a href="#carousel__slide3"
-                class="carousel__next">Go to next slide</a>
-           </li>
-           <li id="carousel__slide3"
-               tabindex="0"
-               class="carousel__slide">
-             <div class="carousel__snapper"></div>
-             <a href="#carousel__slide2"
-                class="carousel__prev">Go to previous slide</a>
-             <a href="#carousel__slide4"
-                class="carousel__next">Go to next slide</a>
-           </li>
-           <li id="carousel__slide4"
-               tabindex="0"
-               class="carousel__slide">
-             <div class="carousel__snapper"></div>
-             <a href="#carousel__slide3"
-                class="carousel__prev">Go to previous slide</a>
-             <a href="#carousel__slide1"
-                class="carousel__next">Go to first slide</a>
-           </li>
-         </ol>
-         <aside class="carousel__navigation">
-           <ol class="carousel__navigation-list">
-             <li class="carousel__navigation-item">
-               <a href="#carousel__slide1"
-                  class="carousel__navigation-button">Go to slide 1</a>
-             </li>
-             <li class="carousel__navigation-item">
-               <a href="#carousel__slide2"
-                  class="carousel__navigation-button">Go to slide 2</a>
-             </li>
-             <li class="carousel__navigation-item">
-               <a href="#carousel__slide3"
-                  class="carousel__navigation-button">Go to slide 3</a>
-             </li>
-             <li class="carousel__navigation-item">
-               <a href="#carousel__slide4"
-                  class="carousel__navigation-button">Go to slide 4</a>
-             </li>
-           </ol>
-         </aside>
-       </section>
+        <% const numberOfSlidess = 4; %>
+        <ol class="carousel__viewport" id="carouselViewport">
+          <% if (typeof ( session.state.companiesss) !== 'undefined') { %>
+ <% for (const company of session.state.companiesss) { %>
+              <% for (let i = 1; i <= numberOfSlidess; i++) { %>
+              <li class="carousel__slide" id="carousel__slide<%= i %>" tabindex="0">
+                <div class="carousel__snapper"></div>
+                <a href="#carousel__slide<%= i === 1 ? numberOfSlidess : i - 1 %>" class="carousel__prev">Go to previous slide</a>
+                <a href="#carousel__slide<%= i === numberOfSlidess ? 1 : i + 1 %>" class="carousel__next">Go to next slide</a>
+                
+               
+              <% const companyStartDate = new Date(company.startDate);
+              companyStartDate.setHours(0, 0, 0, 0);
+              const currentDate = new Date(Date.now());
+              currentDate.setHours(0, 0, 0, 0);%>
+               <% const companyEndDate = new Date(company.endDate);
+               companyEndDate.setHours(0, 0, 0, 0);%>
+           
+
+              <div class="card" style="color: #fff;">
+            <div class="cardHead">
+              <div class="profileHeader" style="background-image: url('/public/backer.jpeg'); background-size: cover; background-repeat: no-repeat; background-position: center center; height: 80px;width: 80px; border-radius: 360px;">
+              </div>
+            </div>
+        
+            <div class="main">
+              <div class="cardBody">
+                <div class="contents">Name: <%= company.companyName %></div>
+                <div class="contents">auctionDate: <%= formatDate(company.startDate) %></div>
+                <div class="contents">endTime: <%= formatDate(company.endDate) %></div>
+              </div>
+              <div class="footer">
+              </div>
+            </div>
+            </div>
+              </li>
+            <% } %>
+          <% } %>
+          <% } %>
+        </ol>
+      
+        <aside class="carousel__navigation">
+          <ol class="carousel__navigation-list" id="carouselNavigationList"></ol>
+        </aside>
+      
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            const carouselViewport = document.getElementById('carouselViewport');
+            const carouselNavigationList = document.getElementById('carouselNavigationList');
+      
+            for (let i = 1; i <= numberOfSlidess; i++) {
+              const slideElement = document.createElement('li');
+              slideElement.id = `carousel__slide${i}`;
+              slideElement.tabIndex = 0;
+              slideElement.className = 'carousel__slide';
+              slideElement.innerHTML = `
+                <div class="carousel__snapper"></div>
+                <a href="#carousel__slide${i === 1 ? numberOfSlidess : i - 1}" class="carousel__prev">Go to previous slide</a>
+                <a href="#carousel__slide${i === numberOfSlidess ? 1 : i + 1}" class="carousel__next">Go to next slide</a>
+              `;
+              carouselViewport.appendChild(slideElement);
+      
+              const navigationItem = document.createElement('li');
+              navigationItem.className = 'carousel__navigation-item';
+              navigationItem.innerHTML = `
+                <a href="#carousel__slide${i}" class="carousel__navigation-button">Go to slide ${i}</a>
+              `;
+              carouselNavigationList.appendChild(navigationItem);
+            }
+          });
+        </script>
+      </section>
        <div style="position: absolute;bottom: -150px;gap: 50px; height: 300px; display: flex;width: 100%; justify-content: space-between;">
         <div class="custom-roads" >
           <div class="custom-truck-empty" style="height: 100%;"></div>
@@ -189,11 +224,21 @@
               
        
    </section>
+   <div style="display: flex;position:relative;background-color:black;width: 100%;height: 10px;z-index: 3;"></div>
    <div class="parent" style="position: absolute; z-index:5;">
-    <div class="child_three"><div class="test"><div class="news">NEWS</div><button>Explore more</button></div>
+    <div class="child_three"><div class="test"><div class="news" style="gap: 30px;display: flex;flex-direction: column; justify-content: center;align-items: center;padding: 20px;">
+      <div style="font-size: xx-large;color: #fff;" >About Us</div>
+      <p  style="color: #fff;">We are a platform for doing auction for cardamom at idukki to sell global</p>
+      <p class="news"  style="color: #fff;">Spices Board had introduced e-Auction of Cardamom in Bodinayakanur, Theni Dist, Tamilnadu in August 2007.</p>
+  </div></div>
         <div id="img_three"></div>
     </div>
-    <div class="child_four"> <div class="test"><div class="news">CONTACT</div><button>Explore more</button></div>
+    <div class="child_four"> <div class="test" >
+      <div class="news" style="gap: 30px;display: flex;flex-direction: column; justify-content: center;align-items: center;padding: 20px;color: #fff;">
+        <div>CONTACT</div>
+      <div>Please mail us at: cardamom@spiceauction.com</div>
+    </div>
+     </div>
         <div id="img_four"></div>
     </div>
     <div class="child_five">

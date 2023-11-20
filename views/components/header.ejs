@@ -1,14 +1,8 @@
-<div class="header">
+<div class="header" style="background-image: url('../../public/nav.svg');">
     <h2 class="title">Profile</h2>
+    <div class="content" style="font-size: xx-large;">You Can Manage Your Profile Here</div>
     <div class="content">
-        <div class="auctions">
-            All
-            Auctions
-        </div>
-        <div class="spices">
-            All
-            Spice 
-        </div>
+        
         <% if (session.state.user.userType === 'seller') { %>
 
         <div class="Add">

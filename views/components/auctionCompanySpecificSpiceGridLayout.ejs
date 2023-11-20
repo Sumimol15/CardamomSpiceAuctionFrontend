@@ -4,11 +4,20 @@
   return date.toLocaleDateString('en-US', options);
 } %>
 
-<% console.log('User:', session.state.user); %>
-<% console.log('reacehdeded@@@@@@@@@@@@@@',session.state,'reacehdeded@@@@@@@@@@@@@@'); %>
+<script>
+ 
+  function refreshPage() {
+    location.reload(true); 
+  }
+
+  window.onload = function() {
+    setTimeout(refreshPage, 5000);
+  };
+</script>
+
 <div class="layout">
-    <div class="header" >
-      <div class="profileHeader" style="background-image: url('/public/backer.jpeg'); background-size: cover; background-repeat: no-repeat; background-position: center center; height: 100%;width: 100%;display: flex; justify-content: center;align-items: center; padding: 5px;border-radius: 6px;flex-direction: column; ">
+    <div class="header" style="background-image: url('../../public/nav2.svg');">
+      <div class="profileHeader" style="background-image: url('/public/backer.jpeg'); background-size: cover; background-repeat: no-repeat; background-position: center center; height: 80px;width: 100%;display: flex; justify-content: center;align-items: center; padding: 5px;border-radius: 6px;flex-direction: column; ">
         <% if (typeof (session.state.spicess) !== 'undefined' && session.state.spicess.length >0) { %>
 
        <h3 style="color: white;">Listing of  <%= session.state.spicess[0].companyName %></h3>
@@ -36,7 +45,10 @@
                 <div class="contents">endTime: <%= formatDate(spice.endTime) %></div>
                 <div class="contents">currentPrice: <%= (typeof spice.bidPrice !== 'undefined'? spice.bidPrice : spice.minimumPrice) %></div>
                 <% let a = (typeof spice.bidPrice !== 'undefined' ? spice.bidPrice : spice.minimumPrice); %>
-                <div class="contents">currentHolder: <%= (typeof spice.holderFirstName !== 'undefined' ? spice.holderFirstName : 'no') %> <%= (typeof spice.holderLastName !== 'undefined' ? spice.holderLastName : 'Holder') %></div>
+                <% if (typeof (spice.holderFirstName) !== 'undefined') { %>
+
+                <div class="contents">currentHolder: <%= (typeof spice.holderFirstName !== 'undefined' ?  spice.holderFirstName : 'no') %> <%= (typeof spice.holderLastName !== 'undefined' ? spice.holderLastName : 'Holder') %></div>
+                <% } %>
               </div>
               <div class="footer" style="gap: 10px;">
                 <div class="footer" style="gap: 10px;">
