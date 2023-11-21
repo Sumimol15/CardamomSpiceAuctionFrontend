@@ -141,6 +141,15 @@
         <ol class="carousel__viewport" id="carouselViewport">
           <% if (typeof ( session.state.companiesss) !== 'undefined') { %>
  <% for (const company of session.state.companiesss) { %>
+ <% const companyStartDate = new Date(company.startDate);
+              companyStartDate.setHours(0, 0, 0, 0);
+              const currentDate = new Date(Date.now());
+              currentDate.setHours(0, 0, 0, 0);%>
+               <% const companyEndDate = new Date(company.endDate);
+               companyEndDate.setHours(0, 0, 0, 0);%>
+           
+           <% if (companyStartDate.getTime() <= currentDate.getTime() && companyEndDate.getTime() >= currentDate.getTime()) { %>
+
               <% for (let i = 1; i <= numberOfSlidess; i++) { %>
               <li class="carousel__slide" id="carousel__slide<%= i %>" tabindex="0">
                 <div class="carousel__snapper"></div>
@@ -174,6 +183,7 @@
             </div>
               </li>
             <% } %>
+   <% } %>
           <% } %>
           <% } %>
         </ol>
