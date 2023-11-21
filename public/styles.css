@@ -282,6 +282,8 @@ ol, li {
   position: absolute;
   inset: 0;
   background-size: cover;
+    background-color: white;
+
   background-image: url(nav.svg);
 
   transition: .50s;
@@ -303,6 +305,7 @@ ol, li {
   inset: 0;
   background-position:center;
   background-size: cover;
+  background-color: white;
   background-image: url(nav.svg);
   transition: .50s;
   background-repeat: no-repeat;
