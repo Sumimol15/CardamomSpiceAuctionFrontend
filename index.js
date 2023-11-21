@@ -224,7 +224,7 @@ app.get('/user/profile', async (req, res) => {
   const companies = await  axios.get(`${process.env.DOMAIN}/auction/getAll`);
   req.session.state.companies = companies.data.message;
   console.log('6');
-  res.status(200).render('profile', {session: req.session});
+  res.status(200).render('Profile', {session: req.session});
  }
   } catch (error) {
     console.log('7');
@@ -427,7 +427,7 @@ app.post('/company/spice/approve', async (req, res) => {
     }
   });
   
-
+let reloaded = false;
 
   app.post('/user/auction/getByCompanyNameAndDate', async (req, res) => {
     try {
@@ -436,6 +436,9 @@ app.post('/company/spice/approve', async (req, res) => {
       req.session.state.spicess =  allData.data.message;
       const profileCardData = await axios.post(`${process.env.DOMAIN}/userProfile`, req.session.state);
       req.session.state.user =  profileCardData.data.message;
+      const allDatas = await axios.post(`${process.env.DOMAIN}/spice/getAllByCompanyNameAndDate`,req.body);
+      req.session.state.spicess =  allDatas.data.message;
+
       res.status(200).render('auction',{session: req.session});
     } catch (error) {
       res.status(200).render('home', {session: req.session,message: 'an error occured,please try again later'});
