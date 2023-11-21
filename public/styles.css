@@ -272,7 +272,6 @@ ol, li {
 }
 .child_three{
   grid-area: 1/1/7/11;
-  background-color: #000;
   overflow: hidden;
   position: relative;
 }
@@ -283,7 +282,8 @@ ol, li {
   position: absolute;
   inset: 0;
   background-size: cover;
-  background-color: black;
+  background-image: url(nav.svg);
+
   transition: .50s;
   background-repeat: no-repeat;
 }
@@ -293,7 +293,6 @@ ol, li {
 
 .child_four{
   grid-area: 1/11/7/21;
-  background-color: green;
   overflow: hidden;
   position: relative;
 }
@@ -304,6 +303,7 @@ ol, li {
   inset: 0;
   background-position:center;
   background-size: cover;
+  background-image: url(nav.svg);
   transition: .50s;
   background-repeat: no-repeat;
   z-index: 0;
