@@ -429,19 +429,33 @@ app.post('/company/spice/approve', async (req, res) => {
   
 let reloaded = false;
 
+ let a;
+
   app.post('/user/auction/getByCompanyNameAndDate', async (req, res) => {
     try {
+      console.log('reacheded,$$$$$$$$$$$$$$$$$$$$$,$$$$$$$$$$$$$$$$$$$$$');
       const allData = await axios.post(`${process.env.DOMAIN}/spice/getAllByCompanyNameAndDate`,req.body);
-
       req.session.state.spicess =  allData.data.message;
+      console.log('$$$$$$$$$$$$$$$$$$',req.session.state.spicess[0].companyName,'$$$$$$$$$$$$$$$$$$');
+      a = req.session.state.spicess[0].companyName;
       const profileCardData = await axios.post(`${process.env.DOMAIN}/userProfile`, req.session.state);
       req.session.state.user =  profileCardData.data.message;
-      const allDatas = await axios.post(`${process.env.DOMAIN}/spice/getAllByCompanyNameAndDate`,req.body);
-      req.session.state.spicess =  allDatas.data.message;
-
-      res.status(200).render('auction',{session: req.session});
+      res.status(200).redirect('/user/auction/spice');
     } catch (error) {
       res.status(200).render('home', {session: req.session,message: 'an error occured,please try again later'});
+    }
+  });
+
+  app.post('/checkCompanyChange', (req, res) => {
+    console.log('**************$$$$$$$$$$$$$$$$$$$$$',req.body.companyName,'$$$$$$$$$$$$$$$$$$');
+    console.log('**************$$$$$$$$$$$$$$$$$$$$$',a,'$$$$$$$$$$$$$$$$$$');
+
+
+    if (a !== req.body.companyName) {
+      res.json({ companyChanged: false });
+    }
+      else {
+      res.json({ companyChanged: true });
     }
   });
 
