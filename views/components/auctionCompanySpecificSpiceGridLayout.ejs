@@ -3,17 +3,32 @@
   const date = new Date(dateString);
   return date.toLocaleDateString('en-US', options);
 } %>
-
+<%   console.log('5432533',session.state.spicess,'43252453433455'); %>
+<%   let a = session.state.spicess[0].companyName%>
+<%   console.log('5432533',a,'43252453433455'); %>
 <script>
- 
   function refreshPage() {
-    location.reload(true); 
+    location.reload(true);
   }
 
-  window.onload = function() {
-    setTimeout(refreshPage, 5000);
+  window.onload = async function () {
+    const response = await fetch('/checkCompanyChange', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ companyName: '<%= a %>' }),
+    });
+    
+    const result = await response.json();
+
+    if (result.companyChanged === false) {
+      refreshPage();
+    }
   };
 </script>
+
+
 
 <div class="layout">
     <div class="header" style="background-image: url('../../public/nav2.svg');">
@@ -90,5 +105,6 @@
         </div>
     </div>
 </div>
+
 
 
