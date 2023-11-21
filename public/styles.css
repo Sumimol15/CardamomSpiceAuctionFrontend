@@ -283,6 +283,7 @@ ol, li {
   position: absolute;
   inset: 0;
   background-size: cover;
+  background-color: black;
   transition: .50s;
   background-repeat: no-repeat;
 }
@@ -292,7 +293,7 @@ ol, li {
 
 .child_four{
   grid-area: 1/11/7/21;
-  background-color: rgb(110, 216, 23);
+  background-color: green;
   overflow: hidden;
   position: relative;
 }
