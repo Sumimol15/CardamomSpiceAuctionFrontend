@@ -702,7 +702,7 @@ nav .loginBox .login:hover {
   line-height: 36px;
   text-align: start;
   letter-spacing: -0.75px;
-  color: #020817;
+  color: green;
 
 }
 
@@ -714,7 +714,7 @@ nav .loginBox .login:hover {
   border: 0.5px solid #e5e7eb;
   border-radius: 8px;
   background-color: #f1f5f9;
-  color: #64748b;
+  color: green;
   box-shadow: none;
 }
 .header .content div {
