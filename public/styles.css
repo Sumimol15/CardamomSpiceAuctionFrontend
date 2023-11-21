@@ -271,7 +271,7 @@ ol, li {
   scale: 2;
 }
 .child_three{
-  grid-area: 1/1/5/11;
+  grid-area: 1/1/7/11;
   background-color: #000;
   overflow: hidden;
   position: relative;
@@ -292,7 +292,7 @@ ol, li {
 }
 
 .child_four{
-  grid-area: 1/11/5/21;
+  grid-area: 1/11/7/21;
   background-color: rgb(110, 216, 23);
   overflow: hidden;
   position: relative;
@@ -317,7 +317,7 @@ ol, li {
   z-index: 1;
 }
 .child_five{
-  grid-area: 5/1/9/21;
+  grid-area: 7/1/8/21;
   background-color: rgb(228, 162, 7);
   overflow: hidden;
 }
@@ -702,7 +702,7 @@ nav .loginBox .login:hover {
   line-height: 36px;
   text-align: start;
   letter-spacing: -0.75px;
-  color: green;
+  color: #020817;
 
 }
 
@@ -714,7 +714,7 @@ nav .loginBox .login:hover {
   border: 0.5px solid #e5e7eb;
   border-radius: 8px;
   background-color: #f1f5f9;
-  color: green;
+  color: #64748b;
   box-shadow: none;
 }
 .header .content div {
@@ -1236,10 +1236,10 @@ input[type="text"]::placeholder {
 
 .parent{
   width: 100%;
-  height: 1057px;
+  height: 700px;
   background-color: rgb(231, 223, 223);
   display: grid;
-  grid-template-rows: repeat(8,1fr);
+  grid-template-rows: repeat(7,1fr);
   grid-template-columns: repeat(20,1fr);
   row-gap: 2px;
   column-gap: 2px;
