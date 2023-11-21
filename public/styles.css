@@ -284,7 +284,6 @@ ol, li {
   background-size: cover;
     background-color: white;
 
-  background-image: url(nav.svg);
 
   transition: .50s;
   background-repeat: no-repeat;
@@ -306,7 +305,6 @@ ol, li {
   background-position:center;
   background-size: cover;
   background-color: white;
-  background-image: url(nav.svg);
   transition: .50s;
   background-repeat: no-repeat;
   z-index: 0;
