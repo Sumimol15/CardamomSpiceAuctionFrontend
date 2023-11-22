@@ -138,55 +138,45 @@
        <!-- corousel two -->
        <section class="carousel" aria-label="Gallery" style="height: 100;width: 20%;">
         <% const numberOfSlidess = 4; %>
-        <ol class="carousel__viewport" id="carouselViewport">
-          <% if (typeof ( session.state.companiesss) !== 'undefined') { %>
- <% for (const company of session.state.companiesss) { %>
- <% const companyStartDate = new Date(company.startDate);
-              companyStartDate.setHours(0, 0, 0, 0);
-              const currentDate = new Date(Date.now());
-              currentDate.setHours(0, 0, 0, 0);%>
-               <% const companyEndDate = new Date(company.endDate);
-               companyEndDate.setHours(0, 0, 0, 0);%>
-           
-           <% if (companyStartDate.getTime() <= new Date().getTime() && companyEndDate.getTime() >= new Date().getTime()) { %>
+       <ol class="carousel__viewport" id="carouselViewport">
+  <% if (typeof session.state.companiesss !== 'undefined') { %>
+    <% for (const company of session.state.companiesss) { %>
+      <% const companyStartDate = new Date(company.startDate);
+         companyStartDate.setHours(0, 0, 0, 0);
+         const currentDate = new Date(Date.now());
+         currentDate.setHours(0, 0, 0, 0);
+         const companyEndDate = new Date(company.endDate);
+         companyEndDate.setHours(0, 0, 0, 0);
+      %>
 
-              <% for (let i = 1; i <= numberOfSlidess; i++) { %>
-              <li class="carousel__slide" id="carousel__slide<%= i %>" tabindex="0">
-                <div class="carousel__snapper"></div>
-                <a href="#carousel__slide<%= i === 1 ? numberOfSlidess : i - 1 %>" class="carousel__prev">Go to previous slide</a>
-                <a href="#carousel__slide<%= i === numberOfSlidess ? 1 : i + 1 %>" class="carousel__next">Go to next slide</a>
-                
-               
-              <% const companyStartDate = new Date(company.startDate);
-              companyStartDate.setHours(0, 0, 0, 0);
-              const currentDate = new Date(Date.now());
-              currentDate.setHours(0, 0, 0, 0);%>
-               <% const companyEndDate = new Date(company.endDate);
-               companyEndDate.setHours(0, 0, 0, 0);%>
-           
+      <% if (companyStartDate.getTime() <= currentDate.getTime() && companyEndDate.getTime() >= currentDate.getTime()) { %>
+        <% for (let i = 1; i <= numberOfSlidess; i++) { %>
+          <li class="carousel__slide" id="carousel__slide<%= i %>" tabindex="0">
+            <div class="carousel__snapper"></div>
+            <a href="#carousel__slide<%= i === 1 ? numberOfSlidess : i - 1 %>" class="carousel__prev">Go to previous slide</a>
+            <a href="#carousel__slide<%= i === numberOfSlidess ? 1 : i + 1 %>" class="carousel__next">Go to next slide</a>
 
-              <div class="card" style="color: #fff;">
-            <div class="cardHead">
-              <div class="profileHeader" style="background-image: url('/public/backer.jpeg'); background-size: cover; background-repeat: no-repeat; background-position: center center; height: 80px;width: 80px; border-radius: 360px;">
+            <div class="card" style="color: #fff;">
+              <div class="cardHead">
+                <div class="profileHeader" style="background-image: url('/public/backer.jpeg'); background-size: cover; background-repeat: no-repeat; background-position: center center; height: 80px;width: 80px; border-radius: 360px;"></div>
+              </div>
+
+              <div class="main">
+                <div class="cardBody">
+                  <div class="contents">Name: <%= company.companyName %></div>
+                  <div class="contents">auctionDate: <%= formatDate(company.startDate) %></div>
+                  <div class="contents">endTime: <%= formatDate(company.endDate) %></div>
+                </div>
+                <div class="footer"></div>
               </div>
             </div>
-        
-            <div class="main">
-              <div class="cardBody">
-                <div class="contents">Name: <%= company.companyName %></div>
-                <div class="contents">auctionDate: <%= formatDate(company.startDate) %></div>
-                <div class="contents">endTime: <%= formatDate(company.endDate) %></div>
-              </div>
-              <div class="footer">
-              </div>
-            </div>
-            </div>
-              </li>
-            <% } %>
-   <% } %>
-          <% } %>
-          <% } %>
-        </ol>
+          </li>
+        <% } %>
+      <% } %>
+    <% } %>
+  <% } %>
+</ol>
+
       
         <aside class="carousel__navigation">
           <ol class="carousel__navigation-list" id="carouselNavigationList"></ol>
