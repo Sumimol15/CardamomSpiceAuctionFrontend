@@ -166,8 +166,10 @@ app.post('/company/login', (req, res) => {
      res.status(200).render('home', { swalSuccess: 'you have succusfully loged in.', session: req.session });
    })
    .catch(error => {
+         req.session.state.page == 'companylogin'
+
      console.error(error);
-     res.status(200).render('companyLogin', { swalSuccess: 'the password is incorrect please try again' });
+     res.status(200).render('authentication', { swalSuccess: 'the password is incorrect please try again',session: req.session });
    });
   });
 
