@@ -52,7 +52,7 @@
     <input type="number" name="minimumPrice">
     
     <div class="buttonHolder">
-        <div class="cancel" id="editProfileBtn" style="cursor:pointer">Cancel</div>
+        <div class="cancel" id="addBtn" style="cursor:pointer">Cancel</div>
         <button type="submit" class="submit">Submit</div>
     </div>
 </form>
@@ -86,8 +86,8 @@
               }
 });
 
-document.getElementById('editProfileBtn').addEventListener('click', () => {
-        const userEditFormContainer = document.querySelector('.profileEdit');
+document.getElementById('addBtn').addEventListener('click', () => {
+        const userEditFormContainer = document.querySelector('.add');
         if (userEditFormContainer) {
             userEditFormContainer.classList.toggle('visible');
         }
