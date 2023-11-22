@@ -102,5 +102,10 @@
       imagePreview.style.display = 'none';
   }
 });
-
+document.getElementById('editProfileBtn').addEventListener('click', () => {
+        const userEditFormContainer = document.querySelector('.profileEdit');
+        if (userEditFormContainer) {
+            userEditFormContainer.classList.toggle('visible');
+        }
+    });
 </script>
