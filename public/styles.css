@@ -1165,7 +1165,7 @@ input[type="text"]::placeholder {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1;
+  z-index: 8;
   display: none;
   flex-direction: column;
   max-width: 400px;
@@ -1175,7 +1175,8 @@ input[type="text"]::placeholder {
   background: #FFF;
   padding: 10px;
   padding-left: 20px;
-
+  max-height:580px;
+  overflow-y:auto;
 }
 .profileEdit  h4{
   color: #09090B;
