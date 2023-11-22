@@ -22,4 +22,10 @@
             userEditFormContainer.classList.toggle('hidden');
         }
     });
+document.getElementById('addBtn').addEventListener('click', () => {
+        const userEditFormContainer = document.querySelector('.add');
+        if (userEditFormContainer) {
+            userEditFormContainer.classList.toggle('visible');
+        }
+    });
 </script>
