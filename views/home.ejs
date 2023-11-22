@@ -148,7 +148,7 @@
                <% const companyEndDate = new Date(company.endDate);
                companyEndDate.setHours(0, 0, 0, 0);%>
            
-           <% if (companyStartDate.getTime() <= currentDate.getTime() && companyEndDate.getTime() >= currentDate.getTime()) { %>
+           <% if (companyStartDate.getTime() <= new Date().getTime() && companyEndDate.getTime() >= new Date().getTime()) { %>
 
               <% for (let i = 1; i <= numberOfSlidess; i++) { %>
               <li class="carousel__slide" id="carousel__slide<%= i %>" tabindex="0">
