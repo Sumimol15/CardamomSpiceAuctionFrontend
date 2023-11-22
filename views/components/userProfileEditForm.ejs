@@ -23,7 +23,7 @@
     </select>
     
     <div class="buttonHolder">
-        <div class="cancel" id="editProfileButton">Cancel</div>
+        <div class="cancel" id="editProfileBtn" style="cursor:pointer">Cancel</div>
         <button class="submit" type="submit">Submit</button>
     </div>
 </form>
@@ -87,4 +87,10 @@
           imagePreview.style.display = 'none';
       }
 });
+document.getElementById('editProfileBtn').addEventListener('click', () => {
+        const userEditFormContainer = document.querySelector('.profileEdit');
+        if (userEditFormContainer) {
+            userEditFormContainer.classList.toggle('visible');
+        }
+    });
   </script>
