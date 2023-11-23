@@ -7,9 +7,16 @@
   return date.toLocaleDateString('en-US', options);
 } %>
 <% if (typeof message !== 'undefined') { %>
+  <% if (message !== 'please fill the weight field.') { %>
     <script>
     Swal.fire("success", "<%- message %>", "success");
 </script>
+<% } %>
+<% if (message == 'please fill the weight field.') { %>
+  <script>
+    Swal.fire("error", "<%- message %>", "error");
+</script>
+<% } %>
 <% } %>
 <main>
     <section class="welcome">
@@ -24,7 +31,7 @@
             color: #fff;
             line-height: 30px;
             outline-width: thick;
-        ">A Cardamom</div>
+        ">An Cardamom</div>
             <div style="
             display: flex;
             font-size: 121px;
@@ -37,7 +44,7 @@
             <p style="display: flex;justify-content:flex-start;color: #fff;font-size: larger;font-weight: 100;">
               Available 24/7 only on spice-auction</p>
          </div>
-         <div style="width: fit-content;cursor:pointer;" class="button-border-half" onclick="scrollToHeight(1500)">Know More</div>
+         <div style="width: fit-content;" class="button-border-half" onclick="scrollToHeight(1500)">Know More</div>
          <script>
           function scrollToHeight(height) {
            window.scrollTo({
@@ -138,45 +145,46 @@
        <!-- corousel two -->
        <section class="carousel" aria-label="Gallery" style="height: 100;width: 20%;">
         <% const numberOfSlidess = 4; %>
-       <ol class="carousel__viewport" id="carouselViewport">
-  <% if (typeof session.state.companiesss !== 'undefined') { %>
-    <% for (const company of session.state.companiesss) { %>
-      <% const companyStartDate = new Date(company.startDate);
-         companyStartDate.setHours(0, 0, 0, 0);
-         const currentDate = new Date(Date.now());
-         currentDate.setHours(0, 0, 0, 0);
-         const companyEndDate = new Date(company.endDate);
-         companyEndDate.setHours(0, 0, 0, 0);
-      %>
+        <ol class="carousel__viewport" id="carouselViewport">
+          <% if (typeof ( session.state.companiesss) !== 'undefined') { %>
+ <% for (const company of session.state.companiesss) { %>
+              <% for (let i = 1; i <= numberOfSlidess; i++) { %>
+              <li class="carousel__slide" id="carousel__slide<%= i %>" tabindex="0">
+                <div class="carousel__snapper"></div>
+                <a href="#carousel__slide<%= i === 1 ? numberOfSlidess : i - 1 %>" class="carousel__prev">Go to previous slide</a>
+                <a href="#carousel__slide<%= i === numberOfSlidess ? 1 : i + 1 %>" class="carousel__next">Go to next slide</a>
+                
+               
+              <% const companyStartDate = new Date(company.startDate);
+              companyStartDate.setHours(0, 0, 0, 0);
+              const currentDate = new Date(Date.now());
+              currentDate.setHours(0, 0, 0, 0);%>
+               <% const companyEndDate = new Date(company.endDate);
+               companyEndDate.setHours(0, 0, 0, 0);%>
+           
+           <% if (companyStartDate.getTime() <= currentDate.getTime() && companyEndDate.getTime() >= currentDate.getTime()) { %>
 
-      <% if (companyStartDate.getTime() <= currentDate.getTime() && companyEndDate.getTime() >= currentDate.getTime()) { %>
-        <% for (let i = 1; i <= numberOfSlidess; i++) { %>
-          <li class="carousel__slide" id="carousel__slide<%= i %>" tabindex="0">
-            <div class="carousel__snapper"></div>
-            <a href="#carousel__slide<%= i === 1 ? numberOfSlidess : i - 1 %>" class="carousel__prev">Go to previous slide</a>
-            <a href="#carousel__slide<%= i === numberOfSlidess ? 1 : i + 1 %>" class="carousel__next">Go to next slide</a>
-
-            <div class="card" style="color: #fff;">
-              <div class="cardHead">
-                <div class="profileHeader" style="background-image: url('/public/backer.jpeg'); background-size: cover; background-repeat: no-repeat; background-position: center center; height: 80px;width: 80px; border-radius: 360px;"></div>
-              </div>
-
-              <div class="main">
-                <div class="cardBody">
-                  <div class="contents">Name: <%= company.companyName %></div>
-                  <div class="contents">auctionDate: <%= formatDate(company.startDate) %></div>
-                  <div class="contents">endTime: <%= formatDate(company.endDate) %></div>
-                </div>
-                <div class="footer"></div>
+              <div class="card" style="color: #fff;">
+            <div class="cardHead">
+              <div class="profileHeader" style="background-image: url('/public/backer.jpeg'); background-size: cover; background-repeat: no-repeat; background-position: center center; height: 80px;width: 80px; border-radius: 360px;">
               </div>
             </div>
-          </li>
-        <% } %>
-      <% } %>
-    <% } %>
-  <% } %>
-</ol>
-
+        
+            <div class="main">
+              <div class="cardBody">
+                <div class="contents">Name: <%= company.companyName %></div>
+                <div class="contents">auctionDate: <%= formatDate(company.startDate) %></div>
+                <div class="contents">endTime: <%= formatDate(company.endDate) %></div>
+              </div>
+              <div class="footer">
+              </div>
+            </div>
+            </div>          <% } %>
+              </li>
+            <% } %>
+          <% } %>
+          <% } %>
+        </ol>
       
         <aside class="carousel__navigation">
           <ol class="carousel__navigation-list" id="carouselNavigationList"></ol>
@@ -209,26 +217,34 @@
           });
         </script>
       </section>
+       <div style="position: absolute;bottom: -150px;gap: 50px; height: 300px; display: flex;width: 100%; justify-content: space-between;">
+        <div class="custom-roads" >
+          <div class="custom-truck-empty" style="height: 100%;"></div>
+        </div>
+        <div class="custom-roadss" style="display: flex; justify-content: space-between;">
+          <div class="custom-truck-loaded" style="height: 100%;"></div>
 
+</div>
+       </div>
       
       </div>
 
               
        
    </section>
-<div style="display: flex;position:relative;background-color:black;width: 100%;height: 5px;z-index: 3;"></div>
+   <div style="display: flex;position:relative;background-color:black;width: 100%;height: 10px;z-index: 3;"></div>
    <div class="parent" style="position: absolute; z-index:5;">
     <div class="child_three"><div class="test"><div class="news" style="gap: 30px;display: flex;flex-direction: column; justify-content: center;align-items: center;padding: 20px;">
-      <div style="font-size: xx-large;color: green;" >About Us</div>
-      <p  style="color: green;font-size:large;">One platform to connect growers company and sellers.</p>
-      <p class="news"  style="color: green;font-size:large;">which ensuring fair pricing, sustainability, and community growth.</p>
+      <div style="font-size: xx-large;color: #fff;" >About Us</div>
+      <p  style="color: #fff;">We are a platform for doing auction for cardamom at idukki to sell global</p>
+      <p class="news"  style="color: #fff;">Spices Board had introduced e-Auction of Cardamom in Bodinayakanur, Theni Dist, Tamilnadu in August 2007.</p>
   </div></div>
         <div id="img_three"></div>
     </div>
     <div class="child_four"> <div class="test" >
-      <div class="news" style="gap: 30px;display: flex;flex-direction: column; justify-content: center;align-items: center;padding: 20px;color: green;">
-        <div style="color:green;">CONTACT</div>
-      <div style="color:green;font-size:large;">Please mail us at: cardamom@spiceauction.com</div>
+      <div class="news" style="gap: 30px;display: flex;flex-direction: column; justify-content: center;align-items: center;padding: 20px;color: #fff;">
+        <div>CONTACT</div>
+      <div>Please mail us at: cardamom@spiceauction.com</div>
     </div>
      </div>
         <div id="img_four"></div>
