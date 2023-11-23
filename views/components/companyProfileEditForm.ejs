@@ -1,4 +1,8 @@
 <form class="profileEdit"  method="post" action="/company/profile" enctype="multipart/form-data" style="max-height:531px;overflow-y:auto;">
+<div class="cancel" id="editProfileBtn" style="
+    display: flex;
+    justify-content: flex-end;
+">❌</div>
   <h4>Edit Info</h4>
   <div class="description">Enter All the necessory details</div>
   <label for="companyName">Company name</label>
@@ -21,7 +25,6 @@
   <input type="text" name="email" value="<%= session.state.user.email %>">
     
     <div class="buttonHolder">
-        <div class="cancel" id="editProfileBtn" style="cursor:pointer">Cancel</div>
         <button class="submit" type="submit">Submit</button>
     </div>
 </form>
