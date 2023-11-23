@@ -4,8 +4,8 @@
   return date.toLocaleDateString('en-US', options);
 } %>
 
-
-<% let a = session.state.spicess[0].companyName%>
+<% let a = (session.state.spicess && session.state.spicess.length > 0) ? session.state.spicess[0].companyName : '' %>
+<%   console.log('5432533',a,'43252453433455'); %>
 <script>
   function refreshPage() {
     location.reload(true);
@@ -105,6 +105,8 @@
         </div>
     </div>
 </div>
+
+
 
 
 
