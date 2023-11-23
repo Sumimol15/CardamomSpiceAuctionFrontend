@@ -195,12 +195,12 @@ app.get('/company/login', (req, res) => {
 
 app.get('/user/logout', (req, res) => {
   req.session.destroy();
-  res.status(200).render('home',{ session: req.session });
+  res.status(200).redirect('home'); 
 });
 
 app.get('/company/logout', (req, res) => {
   req.session.destroy();
-  res.status(200).render('home',{ session: req.session });
+  res.status(200).redirect('home'); 
 });
 ////////////////Profile\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
 app.get('/user/profile', async (req, res) => {
