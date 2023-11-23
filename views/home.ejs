@@ -7,17 +7,29 @@
   return date.toLocaleDateString('en-US', options);
 } %>
 <% if (typeof message !== 'undefined') { %>
-  <% if (message !== 'please fill the weight field.') { %>
+  <% if (message == 'please fill the weight field.') { %>
     <script>
-    Swal.fire("success", "<%- message %>", "success");
-</script>
+      Swal.fire("error", "<%- message %>", "error");
+    </script>
+  <% } else if (message == 'error in fetching the company name.') { %>
+    <script>
+      Swal.fire("error", "<%- message %>", "error");
+    </script>
+  <% } else if (message == 'please provide the minimum price feild') { %>
+    <script>
+      Swal.fire("error", "<%- message %>", "error");
+    </script>
+  <% } else if (message == `Cannot read properties of undefined (reading 'filename')`) { %>
+    <script>
+      Swal.fire("error", "<%- message %>", "error");
+    </script>
+  <% } else { %>
+    <script>
+      Swal.fire("success", "<%- message %>", "success");
+    </script>
+  <% } %>
 <% } %>
-<% if (message == 'please fill the weight field.') { %>
-  <script>
-    Swal.fire("error", "<%- message %>", "error");
-</script>
-<% } %>
-<% } %>
+
 <main>
     <section class="welcome">
        <div style="position: absolute; display: flex;flex-direction: column;justify-content: space-between;width: 100%;" class="borderStudio">
