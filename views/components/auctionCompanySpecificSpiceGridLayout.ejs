@@ -5,11 +5,7 @@
 } %>
 
 
-<%  if(typeof( session.state.spicess[0].companyName) !== 'undefined') {
-let a = session.state.spicess[0].companyName
-}else {
-let a = 'not found'
-}%>
+<% let a = session.state.spicess[0].companyName%>
 <script>
   function refreshPage() {
     location.reload(true);
