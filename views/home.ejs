@@ -84,87 +84,74 @@
       <div class="threeD2" style="margin-top: 100px;"></div>
 
       <div style="display: flex;justify-content: space-between; padding: 50px;">
-     <!-- corousel one -->
-<section class="carousel" aria-label="Gallery" style="height: 100; width: 20%;">
-  <% const numberOfSlides = 4; %>
- 
-    <% if (typeof session.state.homeSpice !== 'undefined') { %>
-      <% for (let i = 0; i < session.state.homeSpice.length; i++) { %>
-<% console.log('Current Time:', new Date()); %>
-<% console.log('Spice Auction Date:', new Date(session.state.homeSpice[i].auctionDate)); %>
-<% console.log('Spice End Time:', new Date(session.state.homeSpice[i].endTime)); %>
+         <!-- corousel one -->
+        <section class="carousel" aria-label="Gallery" style="height: 100;width: 20%;">
+          <% const numberOfSlides = 4; %>
+          <ol class="carousel__viewport" id="carouselViewport">
+            <% if (typeof ( session.state.homeSpice) !== 'undefined') { %>
 
-        <li class="carousel__slide" id="carousel__slide<%= i + 1 %>" tabindex="0">
-          <div class="carousel__snapper"></div>
-          <a href="#carousel__slide<%= i === 0 ? session.state.homeSpice.length : i %>" class="carousel__prev">Go to previous slide</a>
-          <a href="#carousel__slide<%= i === session.state.homeSpice.length - 1 ? 1 : i + 2 %>" class="carousel__next">Go to next slide</a>
-
-              <% const companyStartDate = new Date(session.state.homeSpice[i].auctionDate);
-              companyStartDate.setHours(0, 0, 0, 0);
-              const currentDate = new Date(Date.now());
-              currentDate.setHours(0, 0, 0, 0);%>
-               <% const companyEndDate = new Date(session.state.homeSpice[i].endTime);
-               companyEndDate.setHours(0, 0, 0, 0);%>
-           
-           <% if (companyStartDate.getTime() <= currentDate.getTime() && companyEndDate.getTime() >= currentDate.getTime()) { %>
- <ol class="carousel__viewport" id="carouselViewport">
-          <div class="card" style="color: #fff;">
-            <div class="cardHead">
-              <div class="profileHeader" style="background-image: url('/public/<%= session.state.homeSpice[i].photo.filename %>'); background-size: cover; background-repeat: no-repeat; background-position: center center; height: 80px; width: 80px; border-radius: 360px;"></div>
-            </div>
-
-            <div class="main">
-              <div class="cardBody">
-                <div class="contents">Name: <%= session.state.homeSpice[i].name %></div>
-                <div class="contents">Managed By: <%= session.state.homeSpice[i].companyName %></div>
-                <div class="contents">Weight: <%= session.state.homeSpice[i].weight %> grams</div>
-                <div class="contents">Auction Date: <%= formatDate(session.state.homeSpice[i].auctionDate) %></div>
-                <div class="contents">End Time: <%= formatDate(session.state.homeSpice[i].endTime) %></div>
-                <div class="contents">Minimum Price: <%= session.state.homeSpice[i].minimumPrice %></div>
-              </div>
-              <div class="footer"></div>
-            </div>
-          </div>
-  </ol>
-        </li>
-
-      <% } %>
-    <% } %>
-<% } %>
-
-
-  <aside class="carousel__navigation">
-    <ol class="carousel__navigation-list" id="carouselNavigationList"></ol>
-  </aside>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const carouselViewport = document.getElementById('carouselViewport');
-      const carouselNavigationList = document.getElementById('carouselNavigationList');
-
-      for (let i = 1; i <= numberOfSlides; i++) {
-        const slideElement = document.createElement('li');
-        slideElement.id = `carousel__slide${i}`;
-        slideElement.tabIndex = 0;
-        slideElement.className = 'carousel__slide';
-        slideElement.innerHTML = `
-          <div class="carousel__snapper"></div>
-          <a href="#carousel__slide${i === 1 ? numberOfSlides : i - 1}" class="carousel__prev">Go to previous slide</a>
-          <a href="#carousel__slide${i === numberOfSlides ? 1 : i + 1}" class="carousel__next">Go to next slide</a>
-        `;
-        carouselViewport.appendChild(slideElement);
-
-        const navigationItem = document.createElement('li');
-        navigationItem.className = 'carousel__navigation-item';
-        navigationItem.innerHTML = `
-          <a href="#carousel__slide${i}" class="carousel__navigation-button">Go to slide ${i}</a>
-        `;
-        carouselNavigationList.appendChild(navigationItem);
-      }
-    });
-  </script>
-</section>
-
+            <% for (const spice of session.state.homeSpice) { %>
+              <% for (let i = 1; i <= numberOfSlides; i++) { %>
+                <li class="carousel__slide" id="carousel__slide<%= i %>" tabindex="0">
+                  <div class="carousel__snapper"></div>
+                  <a href="#carousel__slide<%= i === 1 ? numberOfSlides : i - 1 %>" class="carousel__prev">Go to previous slide</a>
+                  <a href="#carousel__slide<%= i === numberOfSlides ? 1 : i + 1 %>" class="carousel__next">Go to next slide</a>
+                  
+                  <div class="card" style="color: #fff;">
+                    <div class="cardHead">
+                      <div class="profileHeader" style="background-image: url('/public/<%= spice.photo.filename %>'); background-size: cover; background-repeat: no-repeat; background-position: center center; height: 80px;width: 80px; border-radius: 360px;"></div>
+                    </div>
+        
+                    <div class="main">
+                      <div class="cardBody">
+                        <div class="contents">Name: <%= spice.name %></div>
+                        <div class="contents">Managed By: <%= spice.companyName %></div>
+                        <div class="contents">Weight: <%= spice.weight %> grams</div>
+                        <div class="contents">Auction Date: <%= formatDate(spice.auctionDate) %></div>
+                        <div class="contents">End Time: <%= formatDate(spice.endTime) %></div>
+                        <div class="contents">Minimum Price: <%= spice.minimumPrice %></div>
+                      </div>
+                      <div class="footer"></div>
+                    </div>
+                  </div>
+                </li>
+              <% } %>
+            <% } %>
+            <% } %>
+          </ol>
+        
+          <aside class="carousel__navigation">
+            <ol class="carousel__navigation-list" id="carouselNavigationList"></ol>
+          </aside>
+        
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              const carouselViewport = document.getElementById('carouselViewport');
+              const carouselNavigationList = document.getElementById('carouselNavigationList');
+        
+              for (let i = 1; i <= numberOfSlides; i++) {
+                const slideElement = document.createElement('li');
+                slideElement.id = `carousel__slide${i}`;
+                slideElement.tabIndex = 0;
+                slideElement.className = 'carousel__slide';
+                slideElement.innerHTML = `
+                  <div class="carousel__snapper"></div>
+                  <a href="#carousel__slide${i === 1 ? numberOfSlides : i - 1}" class="carousel__prev">Go to previous slide</a>
+                  <a href="#carousel__slide${i === numberOfSlides ? 1 : i + 1}" class="carousel__next">Go to next slide</a>
+                `;
+                carouselViewport.appendChild(slideElement);
+        
+                const navigationItem = document.createElement('li');
+                navigationItem.className = 'carousel__navigation-item';
+                navigationItem.innerHTML = `
+                  <a href="#carousel__slide${i}" class="carousel__navigation-button">Go to slide ${i}</a>
+                `;
+                carouselNavigationList.appendChild(navigationItem);
+              }
+            });
+          </script>
+        </section>
+        
         
         
        <!-- corousel two -->
