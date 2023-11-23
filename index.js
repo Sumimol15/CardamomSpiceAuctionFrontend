@@ -468,7 +468,9 @@ let reloaded = false;
         if (spice._id === allData.data.message._id) {
             return {
                 ...spice,
-                bidPrice: allData.data.message.bidPrice
+                bidPrice: allData.data.message.bidPrice,
+                holderFirstName: req.session.state.user.firstName,
+                holderLastName:req.session.state.user.lastName
             };
         } else {
             return spice;
