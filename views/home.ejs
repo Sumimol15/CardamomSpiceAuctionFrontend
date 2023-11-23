@@ -90,6 +90,10 @@
   <ol class="carousel__viewport" id="carouselViewport">
     <% if (typeof session.state.homeSpice !== 'undefined') { %>
       <% for (let i = 0; i < session.state.homeSpice.length; i++) { %>
+<% console.log('Current Time:', new Date()); %>
+<% console.log('Spice Auction Date:', new Date(spice.auctionDate)); %>
+<% console.log('Spice End Time:', new Date(spice.endTime)); %>
+
         <li class="carousel__slide" id="carousel__slide<%= i + 1 %>" tabindex="0">
           <div class="carousel__snapper"></div>
           <a href="#carousel__slide<%= i === 0 ? session.state.homeSpice.length : i %>" class="carousel__prev">Go to previous slide</a>
