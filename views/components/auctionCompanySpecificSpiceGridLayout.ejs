@@ -3,9 +3,13 @@
   const date = new Date(dateString);
   return date.toLocaleDateString('en-US', options);
 } %>
-<%   console.log('5432533',session.state.spicess,'43252453433455'); %>
-<%   let a = session.state.spicess[0].companyName%>
-<%   console.log('5432533',a,'43252453433455'); %>
+
+
+<%  if(typeof( session.state.spicess[0].companyName) !== 'undefined') {
+let a = session.state.spicess[0].companyName
+}else {
+let a = 'not found'
+}%>
 <script>
   function refreshPage() {
     location.reload(true);
