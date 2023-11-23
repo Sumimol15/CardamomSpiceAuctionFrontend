@@ -99,6 +99,15 @@
           <a href="#carousel__slide<%= i === 0 ? session.state.homeSpice.length : i %>" class="carousel__prev">Go to previous slide</a>
           <a href="#carousel__slide<%= i === session.state.homeSpice.length - 1 ? 1 : i + 2 %>" class="carousel__next">Go to next slide</a>
 
+              <% const companyStartDate = new Date(session.state.homeSpice[i].auctionDate);
+              companyStartDate.setHours(0, 0, 0, 0);
+              const currentDate = new Date(Date.now());
+              currentDate.setHours(0, 0, 0, 0);%>
+               <% const companyEndDate = new Date(session.state.homeSpice[i].endTime);
+               companyEndDate.setHours(0, 0, 0, 0);%>
+           
+           <% if (companyStartDate.getTime() <= currentDate.getTime() && companyEndDate.getTime() >= currentDate.getTime()) { %>
+
           <div class="card" style="color: #fff;">
             <div class="cardHead">
               <div class="profileHeader" style="background-image: url('/public/<%= session.state.homeSpice[i].photo.filename %>'); background-size: cover; background-repeat: no-repeat; background-position: center center; height: 80px; width: 80px; border-radius: 360px;"></div>
