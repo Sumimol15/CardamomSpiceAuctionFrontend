@@ -1,4 +1,9 @@
 <form class="form add" style="background-color: white;" action="/company/addAnAuction" method="post">
+<div class="cancel" id="addBtn" style="
+    display: flex;
+    justify-content: flex-end;
+    cursor:pointer;
+">❌</div>
     <h4>Add A Post</h4>
     <div class="description">Enter All the necessory details</div>
     <label for="name">Company Name</label>
@@ -8,7 +13,6 @@
     <label for="endDate">endTime</label>
     <input type="date" name="endDate">    
     <div class="buttonHolder">
-        <div class="cancel" id="addBtn" style="cursor:pointer">Cancel</div>
         <button type="submit" class="submit">Submit</div>
     </div>
 </form>
