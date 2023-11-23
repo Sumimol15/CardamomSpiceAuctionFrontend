@@ -87,7 +87,7 @@
      <!-- corousel one -->
 <section class="carousel" aria-label="Gallery" style="height: 100; width: 20%;">
   <% const numberOfSlides = 4; %>
-  <ol class="carousel__viewport" id="carouselViewport">
+ 
     <% if (typeof session.state.homeSpice !== 'undefined') { %>
       <% for (let i = 0; i < session.state.homeSpice.length; i++) { %>
 <% console.log('Current Time:', new Date()); %>
@@ -107,7 +107,7 @@
                companyEndDate.setHours(0, 0, 0, 0);%>
            
            <% if (companyStartDate.getTime() <= currentDate.getTime() && companyEndDate.getTime() >= currentDate.getTime()) { %>
-
+ <ol class="carousel__viewport" id="carouselViewport">
           <div class="card" style="color: #fff;">
             <div class="cardHead">
               <div class="profileHeader" style="background-image: url('/public/<%= session.state.homeSpice[i].photo.filename %>'); background-size: cover; background-repeat: no-repeat; background-position: center center; height: 80px; width: 80px; border-radius: 360px;"></div>
@@ -126,10 +126,11 @@
             </div>
           </div>
         </li>
+  </ol>
       <% } %>
     <% } %>
 <% } %>
-  </ol>
+
 
   <aside class="carousel__navigation">
     <ol class="carousel__navigation-list" id="carouselNavigationList"></ol>
