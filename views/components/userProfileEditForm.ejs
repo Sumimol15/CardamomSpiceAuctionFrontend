@@ -1,22 +1,23 @@
 <form class="profileEdit"  method="post" action="" enctype="multipart/form-data">
-  <div class="cancel" id="editProfileBtn">Cancel</div>
-<h4>Profile Edit</h4>
+          <div class="cancel" id="editProfileBtn">Cancel</div>
+
+    <h4>Add A Post</h4>
 
     <div class="description">Enter All the necessory details</div>
-    <label for="firstName">First name</label>
-    <input type="text" name="first Name" value="<%= session.state.user.firstName %>">
-    <label for="lastName">Last name</label>
-    <input type="text" name="last Name" value="<%= session.state.user.lastName %>">
-    <label for="email">Email</label>
+    <label for="firstName">first name</label>
+    <input type="text" name="firstName" value="<%= session.state.user.firstName %>">
+    <label for="lastName">last name</label>
+    <input type="text" name="lastName" value="<%= session.state.user.lastName %>">
+    <label for="email">email</label>
     <input type="text" name="email" value="<%= session.state.user.email %>">
-    <label for="mobileNumber">Mobile Number</label>
+    <label for="mobileNumber">mobileNumber</label>
     <input type="text" name="mobileNumber" value="<%= session.state.user.mobileNumber %>">
 
     <label for="photo">Profile Image</label>
     <input type="file" name="photo" id="photoInput">
     <img id="imagePreview" src="#" alt="Image Preview" style="max-width: 200px; display: none;">
     
-    <label for="userType">User Type</label>
+    <label for="userType">User type</label>
     <select id="userType" name="userType">
         <option value="<%= session.state.user.userType %>"><%= session.state.user.userType %></option>
         <option value="seller">Seller</option>
@@ -24,7 +25,6 @@
     </select>
     
     <div class="buttonHolder">
-       
         <button class="submit" type="submit">Submit</button>
     </div>
 </form>
@@ -88,10 +88,11 @@
           imagePreview.style.display = 'none';
       }
 });
+
 document.getElementById('editProfileBtn').addEventListener('click', () => {
         const userEditFormContainer = document.querySelector('.profileEdit');
         if (userEditFormContainer) {
             userEditFormContainer.classList.toggle('visible');
         }
     });
-  </script>
+</script>
