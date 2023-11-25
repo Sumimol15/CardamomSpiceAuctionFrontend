@@ -58,7 +58,7 @@
                 <div class="contents">companyName: <%= spice.companyName %></div>
                 <div class="contents">auctionDate: <%= formatDate(spice.auctionDate) %></div>
                 <div class="contents">endTime: <%= formatDate(spice.endTime) %></div>
-                <div class="contents">currentPrice: <%= (typeof spice.bidPrice !== 'undefined'? spice.bidPrice : spice.minimumPrice) %></div>
+                <div class="contents">currentPrice: <span>&#8377;</span><%= (typeof spice.bidPrice !== 'undefined'? spice.bidPrice : spice.minimumPrice) %></div>
                 <% let a = (typeof spice.bidPrice !== 'undefined' ? spice.bidPrice : spice.minimumPrice); %>
                 <% if (typeof (spice.holderFirstName) !== 'undefined') { %>
 
