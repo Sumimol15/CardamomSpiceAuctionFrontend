@@ -55,7 +55,7 @@
           <div class="contents">Seller ID: <%= spice.sellerId %></div>
           <div class="contents">Auction Date: <%= formatDate(spice.auctionDate) %></div>
           <div class="contents">End Time: <%= formatDate(spice.endTime) %></div>
-          <div class="contents">Minimum Price: <%= spice.minimumPrice %></div>
+          <div class="contents">Minimum Price: <span>&#8377;</span> <%= spice.minimumPrice %></div>
           <div class="contents">Seller Id: <%= spice.sellerId %></div>
           <div class="contents">Holder Name: <%= spice.holderFirstName %> <%= spice.holderLastName %></div>
           <div class="contents">Is Approved: <%= !spice.isRejected ? '✅' : '❌' %></div>
