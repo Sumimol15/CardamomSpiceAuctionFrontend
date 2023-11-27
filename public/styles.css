@@ -1088,9 +1088,6 @@ input[type="text"]::placeholder {
   .welcome h1 {
     margin-top:50% ;
   }
-  .hide-on-mobile {
-      display: none;
-    }
   .dropDown {
     position: relative;
     display: none;
@@ -1160,6 +1157,9 @@ input[type="text"]::placeholder {
     width: 100%;
     margin: 10px;
   }
+    .hide-on-mobile {
+      display: none;
+    }
 }
 
 
