@@ -197,14 +197,14 @@ app.get('/user/logout', async (req, res) => {
   req.session.destroy();
   setTimeout(() => {
   res.status(200).redirect('home'); 
-  },1000);
+  },3000);
 });
 
 app.get('/company/logout', (req, res) => {
   req.session.destroy();
   setTimeout(() => {
   res.status(200).redirect('home'); 
-  },1000);
+  },3000);
 });
 
 ////////////////Profile\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
