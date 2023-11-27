@@ -193,14 +193,14 @@ app.get('/company/login', (req, res) => {
 });
 
 
-app.get('/user/logout', async (req, res) => {
+app.post('/user/logout', async (req, res) => {
   req.session.destroy();
   setTimeout(() => {
   res.status(200).redirect('home'); 
   },3000);
 });
 
-app.get('/company/logout', (req, res) => {
+app.post('/company/logout', (req, res) => {
   req.session.destroy();
   setTimeout(() => {
   res.status(200).redirect('home'); 
