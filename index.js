@@ -195,7 +195,7 @@ app.get('/company/login', (req, res) => {
 
 app.get('/user/logout', (req, res) => {
   req.session.destroy();
-  res.status(200).replace('home'); 
+  res.status(200).redirect('/'); 
 });
 
 app.get('/company/logout', (req, res) => {
