@@ -212,7 +212,9 @@
                     request.send(JSON.stringify({logout:'logout'}));
                     console.log('1');
                     location.replace('/');
-  location.reload();
+ setTimeout(() =>{
+                        location.refresh();
+                    },1000 )
                 });
             </script>
             
@@ -355,7 +357,9 @@
                     request.send(JSON.stringify({logout:'logout'}));
                     console.log('1');
                     location.replace('/');
-  location.reload();
+ setTimeout(() =>{
+                        location.refresh();
+                    },1000 )
                 });
             </script>
         </div>
