@@ -195,12 +195,12 @@ app.get('/company/login', (req, res) => {
 
 app.get('/user/logout', (req, res) => {
   req.session.destroy();
-  res.status(200).replace('home'); 
+  res.status(200).redirect('http://thyma.shop:4000/'); 
 });
 
 app.get('/company/logout', (req, res) => {
   req.session.destroy();
-  res.status(200).replace('home'); 
+  res.status(200).redirect('http://thyma.shop:4000/'); 
 });
 ////////////////Profile\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
 app.get('/user/profile', async (req, res) => {
