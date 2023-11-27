@@ -94,6 +94,13 @@
             <div class="card">
               
             <% for (const company of session.state.companies) { %>
+<% const companyStartDate = new Date(company.startDate);
+              companyStartDate.setHours(0, 0, 0, 0);
+              const currentDate = new Date(Date.now());
+              currentDate.setHours(0, 0, 0, 0);%>
+               <% const companyEndDate = new Date(company.endDate);
+               companyEndDate.setHours(0, 0, 0, 0);%>
+           
  <% if (companyStartDate.getTime() <= currentDate.getTime() && companyEndDate.getTime() >= currentDate.getTime()) { %>
               <div class="card">
             <div class="cardHead">
