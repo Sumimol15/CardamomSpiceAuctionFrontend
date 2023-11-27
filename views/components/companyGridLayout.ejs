@@ -35,12 +35,21 @@
 <!-- spices -->
 <div class="card ">
     <h3>All Spices</h3>
-    <div class="card ">
+    <div class="card " style="height: 700px;width: 500px;">
     <% if (session.state.spices.length == 0) { %>
       <h3>Spice Not Found</h3>
       <% } %>
  
+      <section class="carousel" aria-label="Spices Carousel" style="height: 100%; width: 500px;">
+        <% const numberOfSpiceSlides = 8; %>
+        <ol class="carousel__viewport" id="spiceCarouselViewport">
     <% for (const spice of session.state.spices) { %>
+      <% for (let i = 1; i <= numberOfSpiceSlides; i++) { %>
+        <li class="carousel__slide" id="spiceCarousel__slide<%= i %>" tabindex="0">
+          <div class="carousel__snapper"></div>
+          <a href="#spiceCarousel__slide<%= i === 1 ? numberOfSpiceSlides : i - 1 %>" class="carousel__prev">Go to previous spice</a>
+          <a href="#spiceCarousel__slide<%= i === numberOfSpiceSlides ? 1 : i + 1 %>" class="carousel__next">Go to next spice</a>
+
     <div class="card <%= spice._id %>" style="z-index: 1;">
       <div class="cardHead">
         <div class="profileHeader" style="background-image: url('/public/backer.jpeg'); background-size: cover; background-repeat: no-repeat; background-position: center center; height: 80px;width: 80px; border-radius: 360px;">
@@ -51,23 +60,23 @@
         <div class="cardBody">
           <div class="contents">Name: <%= spice.name %></div>
           <div class="contents">Managed By: <%= spice.companyName %></div>
-          <div class="contents">Weight: <%= spice.weight %> Kg</div>
+          <div class="contents">Weight: <%= spice.weight %> grams</div>
           <div class="contents">Seller ID: <%= spice.sellerId %></div>
           <div class="contents">Auction Date: <%= formatDate(spice.auctionDate) %></div>
           <div class="contents">End Time: <%= formatDate(spice.endTime) %></div>
-          <div class="contents">Minimum Price: <span>&#8377;</span> <%= spice.minimumPrice %></div>
+          <div class="contents">Minimum Price: <%= spice.minimumPrice %></div>
           <div class="contents">Seller Id: <%= spice.sellerId %></div>
           <div class="contents">Holder Name: <%= spice.holderFirstName %> <%= spice.holderLastName %></div>
           <div class="contents">Is Approved: <%= !spice.isRejected ? '✅' : '❌' %></div>
         </div>
         <div class="footer">
-                              <button class="Edit" id='<%= spice._id %>'>✍️ <%= !spice.isRejected ? 'reject' : 'Approve' %> </button>
+                              <button class="Edit" id='<%= `button_${spice._id}_${i}` %>'>✍️ <%= !spice.isRejected ? 'reject' : 'Approve' %> </button>
 
         </div>
       </div>
     </div>
     <script>
-      document.getElementById('<%= spice._id %>').addEventListener('click', () => {
+      document.getElementById('<%= `button_${spice._id}_${i}` %>').addEventListener('click', () => {
                     const request = new XMLHttpRequest();
           
           request.open('POST', '/company/spice/approve', true);
@@ -82,8 +91,44 @@
           };
       });
   </script>
-  
-  <% } %>
+</li>
+<% } %>
+<% } %>
+
+</ol>
+
+<aside class="carousel__navigation">
+<ol class="carousel__navigation-list" id="spiceCarouselNavigationList"></ol>
+</aside>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+const spiceCarouselViewport = document.getElementById('spiceCarouselViewport');
+const spiceCarouselNavigationList = document.getElementById('spiceCarouselNavigationList');
+
+for (let i = 1; i <= numberOfSpiceSlides; i++) {
+const spiceSlideElement = document.createElement('li');
+spiceSlideElement.id = `spiceCarousel__slide${i}`;
+spiceSlideElement.tabIndex = 0;
+spiceSlideElement.className = 'carousel__slide';
+spiceSlideElement.innerHTML = `
+  <div class="carousel__snapper"></div>
+  <a href="#spiceCarousel__slide${i === 1 ? numberOfSpiceSlides : i - 1}" class="carousel__prev">Go to previous spice</a>
+  <a href="#spiceCarousel__slide${i === numberOfSpiceSlides ? 1 : i + 1}" class="carousel__next">Go to next spice</a>
+`;
+spiceCarouselViewport.appendChild(spiceSlideElement);
+
+const spiceNavigationItem = document.createElement('li');
+spiceNavigationItem.className = 'carousel__navigation-item';
+spiceNavigationItem.innerHTML = `
+  <a href="#spiceCarousel__slide${i}" class="carousel__navigation-button">Go to spice ${i}</a>
+`;
+spiceCarouselNavigationList.appendChild(spiceNavigationItem);
+}
+});
+</script>
+</section>
+
     </div>
   
 </div>
