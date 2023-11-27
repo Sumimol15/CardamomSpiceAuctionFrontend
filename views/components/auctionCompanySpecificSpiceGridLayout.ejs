@@ -44,7 +44,9 @@
     </div>
     <div class="body ">
 <!-- auction -->
+ <% if (typeof spice !== 'undefined') { %>
 <% console.log('!!!!!!!!!!!!',session.state.spicess,'2342343424'); %>
+
             <% for (const spice of session.state.spicess) { %>
               <div class="card">
             <div class="cardHead">
@@ -101,6 +103,7 @@
               </div>
             </div>
             </div>
+            <% } %>
             <% } %>
         </div>
     </div>
