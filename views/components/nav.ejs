@@ -212,6 +212,8 @@
                     request.send(JSON.stringify({logout:'logout'}));
                     console.log('1');
                     location.replace('/');
+   session.state.userType = undefined;
+
  setTimeout(() =>{
                         location.refresh();
                     },1000 )
@@ -357,6 +359,8 @@
                     request.send(JSON.stringify({logout:'logout'}));
                     console.log('1');
                     location.replace('/');
+   session.state.userType = undefined;
+
  setTimeout(() =>{
                         location.refresh();
                     },1000 )
