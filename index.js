@@ -195,17 +195,20 @@ app.get('/company/login', (req, res) => {
 
 app.get('/user/logout', (req, res) => {
   req.session.destroy();
+  const timestamp = new Date().getTime();
   res.status(200)
     .header('Cache-Control', 'no-store, private, must-revalidate')
-    .redirect('/');
+    .redirect(`/?timestamp=${timestamp}`);
 });
 
 app.get('/company/logout', (req, res) => {
   req.session.destroy();
+  const timestamp = new Date().getTime();
   res.status(200)
     .header('Cache-Control', 'no-store, private, must-revalidate')
-    .redirect('/');
+    .redirect(`/?timestamp=${timestamp}`);
 });
+
 ////////////////Profile\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
 app.get('/user/profile', async (req, res) => {
   try {
