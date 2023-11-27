@@ -193,12 +193,11 @@ app.get('/company/login', (req, res) => {
 });
 
 
-app.get('/user/logout', (req, res) => {
+app.get('/user/logout', async (req, res) => {
   req.session.destroy();
-  const timestamp = new Date().getTime();
-  res.status(200)
-    .header('Cache-Control', 'no-store, private, must-revalidate')
-    .redirect(`/?timestamp=${timestamp}`);
+  setTimeout(() => {
+  res.status(200).redirect('home'); 
+  },1000);
 });
 
 app.get('/company/logout', (req, res) => {
