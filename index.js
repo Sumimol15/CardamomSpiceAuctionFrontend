@@ -195,12 +195,16 @@ app.get('/company/login', (req, res) => {
 
 app.get('/user/logout', (req, res) => {
   req.session.destroy();
-  res.status(200).redirect('/'); 
+  res.status(200)
+    .header('Cache-Control', 'no-store, private, must-revalidate')
+    .redirect('/');
 });
 
 app.get('/company/logout', (req, res) => {
   req.session.destroy();
-  res.status(200).replace('home'); 
+  res.status(200)
+    .header('Cache-Control', 'no-store, private, must-revalidate')
+    .redirect('/');
 });
 ////////////////Profile\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
 app.get('/user/profile', async (req, res) => {
