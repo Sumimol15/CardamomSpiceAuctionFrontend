@@ -94,6 +94,7 @@
             <div class="card">
               
             <% for (const company of session.state.companies) { %>
+ <% if (companyStartDate.getTime() <= currentDate.getTime() && companyEndDate.getTime() >= currentDate.getTime()) { %>
               <div class="card">
             <div class="cardHead">
               <div class="profileHeader" style="background-image: url('/public/backer.jpeg'); background-size: cover; background-repeat: no-repeat; background-position: center center; height: 80px;width: 80px; border-radius: 360px;">
@@ -112,6 +113,7 @@
             </div>
             </div>
             <% } %>
+ <% } %>
             </div>
             
             
