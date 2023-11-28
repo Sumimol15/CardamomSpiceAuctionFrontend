@@ -193,22 +193,21 @@ app.get('/company/login', (req, res) => {
 });
 
 app.post('/user/logout', (req, res) => {
-  req.session.destroy()
-  req.session.destroy()
-   res.status(200).render('home');
-  
-});
+  // Assuming you want to send a message or some data to the frontend
+  const message = 'Logout successful';
 
-app.post('/company/logout', (req, res) => {
+  // Destroy the session
   req.session.destroy((err) => {
     if (err) {
       console.error('Error destroying session:', err);
       res.status(500).send('Internal Server Error');
     } else {
-      res.status(200).render('home');
+      // Send a response to the frontend with the desired information
+      res.status(200).json({ message });
     }
   });
 });
+
 
 ////////////////Profile\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
 app.get('/user/profile', async (req, res) => {
