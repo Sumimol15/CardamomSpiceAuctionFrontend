@@ -192,7 +192,6 @@ app.get('/company/login', (req, res) => {
   res.status(200).render('authentication',{session:session});
 });
 
-
 app.get('/user/logout', (req, res) => {
   new Promise((resolve, reject) => {
     req.session.destroy((err) => {
@@ -222,6 +221,7 @@ app.get('/company/logout', (req, res) => {
     }
   });
 });
+
 ////////////////Profile\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
 app.get('/user/profile', async (req, res) => {
   try {
