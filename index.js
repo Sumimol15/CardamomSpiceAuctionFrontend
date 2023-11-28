@@ -195,9 +195,9 @@ app.get('/company/login', (req, res) => {
 
 app.post('/user/logout', async (req, res) => {
   req.session.destroy();
-  setTimeout(() => {
+ 
   res.status(200).redirect('home'); 
-  },3000);
+
 });
 
 app.post('/company/logout', (req, res) => {
