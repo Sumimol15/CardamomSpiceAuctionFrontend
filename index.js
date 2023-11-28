@@ -203,7 +203,7 @@ app.post('/user/logout', (req, res) => {
     });
   })
     .then(() => {
-      res.redirect('home');
+   res.status(200).render('home');
     })
     .catch((error) => {
       console.error('Error destroying session:', error);
@@ -217,7 +217,7 @@ app.post('/company/logout', (req, res) => {
       console.error('Error destroying session:', err);
       res.status(500).send('Internal Server Error');
     } else {
-      res.redirect('home');
+      res.status(200).render('home');
     }
   });
 });
