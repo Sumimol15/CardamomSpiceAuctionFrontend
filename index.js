@@ -193,20 +193,35 @@ app.get('/company/login', (req, res) => {
 });
 
 
-app.post('/user/logout', async (req, res) => {
-  req.session.destroy();
- 
-  res.status(200).redirect('home'); 
-
+app.get('/user/logout', (req, res) => {
+  new Promise((resolve, reject) => {
+    req.session.destroy((err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  })
+    .then(() => {
+      res.redirect('home');
+    })
+    .catch((error) => {
+      console.error('Error destroying session:', error);
+      res.status(500).send('Internal Server Error');
+    });
 });
 
-app.post('/company/logout', (req, res) => {
-  req.session.destroy();
-  setTimeout(() => {
-  res.status(200).redirect('home'); 
-  },3000);
+app.get('/company/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error destroying session:', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.redirect('home');
+    }
+  });
 });
-
 ////////////////Profile\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
 app.get('/user/profile', async (req, res) => {
   try {
