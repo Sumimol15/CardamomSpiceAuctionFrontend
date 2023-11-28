@@ -207,6 +207,21 @@ app.post('/user/logout', (req, res) => {
     }
   });
 });
+app.post('/company/logout', (req, res) => {
+  // Assuming you want to send a message or some data to the frontend
+  const message = 'Logout successful';
+
+  // Destroy the session
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error destroying session:', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      // Send a response to the frontend with the desired information
+      res.status(200).json({ message });
+    }
+  });
+});
 
 
 ////////////////Profile\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
