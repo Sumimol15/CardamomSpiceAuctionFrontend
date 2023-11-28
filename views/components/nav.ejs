@@ -212,11 +212,7 @@
                     request.send(JSON.stringify({logout:'logout'}));
                     console.log('1');
                     location.replace('/');
-   session.state.userType = undefined;
-
- setTimeout(() =>{
-                        location.reload();
-                    },1000 )
+                    location.redirect('home');
                 });
             </script>
             
@@ -359,11 +355,7 @@
                     request.send(JSON.stringify({logout:'logout'}));
                     console.log('1');
                     location.replace('/');
-   session.state.userType = undefined;
-
- setTimeout(() =>{
-                        location.reload();
-                    },1000 )
+   s                   location.redirect('home');
                 });
             </script>
         </div>
