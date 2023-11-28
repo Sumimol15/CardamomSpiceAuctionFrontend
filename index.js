@@ -193,22 +193,10 @@ app.get('/company/login', (req, res) => {
 });
 
 app.post('/user/logout', (req, res) => {
-  new Promise((resolve, reject) => {
-    req.session.destroy((err) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve();
-      }
-    });
-  })
-    .then(() => {
+  req.session.destroy()
+  req.session.destroy()
    res.status(200).render('home');
-    })
-    .catch((error) => {
-      console.error('Error destroying session:', error);
-      res.status(500).send('Internal Server Error');
-    });
+  
 });
 
 app.post('/company/logout', (req, res) => {
