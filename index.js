@@ -192,7 +192,7 @@ app.get('/company/login', (req, res) => {
   res.status(200).render('authentication',{session:session});
 });
 
-app.get('/user/logout', (req, res) => {
+app.post('/user/logout', (req, res) => {
   new Promise((resolve, reject) => {
     req.session.destroy((err) => {
       if (err) {
@@ -211,7 +211,7 @@ app.get('/user/logout', (req, res) => {
     });
 });
 
-app.get('/company/logout', (req, res) => {
+app.post('/company/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       console.error('Error destroying session:', err);
