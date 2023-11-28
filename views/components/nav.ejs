@@ -202,30 +202,20 @@
             <div class="login logout" id="log">
                 Logout
             </div>
-           <script>
-  document.getElementById('log').addEventListener('click', async () => {
-    console.log('reached');
-
-    try {
-      const response = await fetch('/user/logout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ logout: 'logout' }),
-      });
-
-      if (response.ok) {
-        location.replace('/');
-      } else {
-        console.error('Logout failed:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Logout failed:', error.message);
-    }
-  });
-</script>
-
+            <script>
+                document.getElementById('log').addEventListener('click',() => {
+                  console.log('reacehded');
+                     const request = new XMLHttpRequest();   
+                     request.open('POST', '/user/logout', true);
+                    request.setRequestHeader('Content-Type', 'application/json');
+                    console.log('1');
+                    request.send(JSON.stringify({logout:'logout'}));
+                    console.log('1');
+                    location.replace('/');
+                    location.redirect('home');
+                   
+                });
+            </script>
             
         </div>
     </nav>
@@ -356,29 +346,20 @@
             <div class="login" id="logout">
                  Logout
             </div>
-     <script>
-  document.getElementById('log').addEventListener('click', async () => {
-    console.log('reached');
-
-    try {
-      const response = await fetch('/user/logout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ logout: 'logout' }),
-      });
-
-      if (response.ok) {
-        location.replace('/');
-      } else {
-        console.error('Logout failed:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Logout failed:', error.message);
-    }
-  });
-</script>
+      <script>
+                document.getElementById('log').addEventListener('click', () => {
+                  console.log('reacehded');
+                     const request = new XMLHttpRequest();   
+                     request.open('POST', '/user/logout', true);
+                    request.setRequestHeader('Content-Type', 'application/json');
+                    console.log('1');
+                    request.send(JSON.stringify({logout:'logout'}));
+                    console.log('1');
+                    location.replace('/');
+                    location.redirect('home');
+                   
+                });
+            </script>
 
         </div>
     </nav>
