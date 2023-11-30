@@ -12,6 +12,22 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   
       <link rel="stylesheet" href="/styles.css">
+      <script>
+       function unleashMagic() {
+    history.pushState(null, null, document.URL);
+}
+
+function handlePopState(event) {
+    window.location.href = '/';
+}
+
+window.addEventListener('load', function() {
+    unleashMagic();
+});
+
+window.addEventListener('popstate', handlePopState);
+
+      </script>
 </head>
 <body>
     
