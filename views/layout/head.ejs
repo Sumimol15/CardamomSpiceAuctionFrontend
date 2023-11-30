@@ -12,13 +12,21 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   
       <link rel="stylesheet" href="/styles.css">
-      <script>
-       function unleashMagic() {
-    history.pushState(null, null, document.URL);
+    <script>
+function unleashMagic() {
+    try {
+        history.pushState(null, null, document.URL);
+    } catch (error) {
+        console.error('Error pushing state:', error);
+    }
 }
 
 function handlePopState(event) {
-    window.location.href = '/';
+    try {
+        window.location.href = '/';
+    } catch (error) {
+        console.error('Error handling popstate:', error);
+    }
 }
 
 window.addEventListener('load', function() {
@@ -26,8 +34,7 @@ window.addEventListener('load', function() {
 });
 
 window.addEventListener('popstate', handlePopState);
-
-      </script>
+</script>
 </head>
 <body>
     
