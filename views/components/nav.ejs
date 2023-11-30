@@ -7,11 +7,9 @@
     }
 
     function handlePopState(event) {
-        // Check if the user navigated back using browser buttons
-        if (event.state !== null) {
-            // A portal to the root URL awaits!
+
             window.location.href = '/';
-        }
+ 
     }
 
     window.addEventListener('load', function() {
