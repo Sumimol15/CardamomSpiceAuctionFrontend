@@ -1,28 +1,22 @@
 <% console.log(session,'tg5jkgt5r'); %>
 
 <script>
-    var isChrome = true
-    function unleashMagic() {
-        history.pushState(null, null, '/');
-    }
-
-    function handlePopState(event) {
-       if(window.location.href === '/user/login'){
-            window.location.href = '/';
+   function unleashMagic() {
+    history.pushState(null, null, document.URL);
 }
 
- 
+function handlePopState(event) {
+    if (window.location.href === 'http://thyma.shop:4000/user/login') {
+        window.location.href = 'http://thyma.shop:4000/';
     }
+}
 
-    window.addEventListener('load', function() {
-        
-        if (isChrome) {
-            unleashMagic();
-        }
-    });
+window.addEventListener('load', function() {
+    unleashMagic();
+});
 
- 
-    window.addEventListener('popstate', handlePopState);
+window.addEventListener('popstate', handlePopState);
+
 </script>
 
 <% if (typeof (session.state.userType) !== 'undefined' && session.state.userType !== 'company' && session.state.userType !== 'user') { %>
