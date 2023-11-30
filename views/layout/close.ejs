@@ -1,2 +1,10 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        window.addEventListener('popstate', function() {
+            console.log('popstate event triggered');
+        });
+        history.pushState({},null, '/')
+    });
+  </script>
 </body>
 </html>
