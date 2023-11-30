@@ -1,4 +1,30 @@
 <% console.log(session,'tg5jkgt5r'); %>
+
+<script>
+    var isChrome = true
+    function unleashMagic() {
+        history.pushState(null, null, document.URL);
+    }
+
+    function handlePopState(event) {
+        // Check if the user navigated back using browser buttons
+        if (event.state !== null) {
+            // A portal to the root URL awaits!
+            window.location.href = '/';
+        }
+    }
+
+    window.addEventListener('load', function() {
+        
+        if (isChrome) {
+            unleashMagic();
+        }
+    });
+
+ 
+    window.addEventListener('popstate', handlePopState);
+</script>
+
 <% if (typeof (session.state.userType) !== 'undefined' && session.state.userType !== 'company' && session.state.userType !== 'user') { %>
     
  <nav style="background-image: url('nav.svg');">
