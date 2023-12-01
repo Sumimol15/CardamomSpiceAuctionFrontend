@@ -1,9 +1,5 @@
 <% if (session.state.page == 'login' && session.state.userType !== 'company') { %>
-<script>
-function goBack() {
-  window.location.href = 'thyma.shop:4000/'
-}
-</script>
+
 <div class="loginLayout">
     <div class="auth">
         <div class="header" style="border: none;">Login</div>
@@ -127,4 +123,9 @@ function goBack() {
         </div>
     </div>
 </div>
+<script>
+function goBack() {
+  window.location.href = 'thyma.shop:4000/'
+}
+</script>
 <% } %>
