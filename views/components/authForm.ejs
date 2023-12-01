@@ -51,10 +51,16 @@
         <div class="footerLogin">
             <div>By clicking continue, you agree to our</div>
             <div class="inlineFooterDiscription"><div>Terms of Service</div><div>and</div><div>Privacy Policy.</div>
+<input type="button" value="Back" onclick="goBack()">
         </div>
         </div>
     </div>
 </div>
+<script>
+function goBack() {
+  window.history.back()
+}
+</script>
 <% } else if (session.state.page == 'companylogin' && session.state.userType !== 'user') { %>
     <% console.log(session.state,'jrkgerhrefe'); %>
  <div class="loginLayout">
@@ -78,10 +84,16 @@
         <div class="footerLogin">
             <div>By clicking continue, you agree to our</div>
             <div class="inlineFooterDiscription"><div>Terms of Service</div><div>and</div><div>Privacy Policy.</div>
+<input type="button" value="Back" onclick="goBack()">
         </div>
          </div>
      </div>
  </div>
+<script>
+function goBack() {
+  window.history.back()
+}
+</script>
  <% } else { %>
 <div class="loginLayout">
     <div class="auth">
@@ -112,8 +124,14 @@
         <div class="footerLogin">
             <div>By clicking continue, you agree to our</div>
             <div class="inlineFooterDiscription"><div>Terms of Service</div><div>and</div><div>Privacy Policy.</div>
+<input type="button" value="Back" onclick="goBack()">
         </div>
         </div>
     </div>
 </div>
+<script>
+function goBack() {
+  window.history.back()
+}
+</script>
 <% } %>
