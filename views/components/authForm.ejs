@@ -1,5 +1,9 @@
 <% if (session.state.page == 'login' && session.state.userType !== 'company') { %>
-
+<script>
+function goBack() {
+  window.location.href = 'thyma.shop:4000/'
+}
+</script>
 <div class="loginLayout">
     <div class="auth">
         <div class="header" style="border: none;">Login</div>
@@ -21,6 +25,8 @@
         <div class="footerLogin">
             <div>By clicking continue, you agree to our</div>
             <div class="inlineFooterDiscription"><div>Terms of Service</div><div>and</div><div>Privacy Policy.</div>
+<input type="button" value="Back Home" onclick="goBack()">
+
         </div>
         </div>
     </div>
@@ -51,16 +57,12 @@
         <div class="footerLogin">
             <div>By clicking continue, you agree to our</div>
             <div class="inlineFooterDiscription"><div>Terms of Service</div><div>and</div><div>Privacy Policy.</div>
-<input type="button" value="Back" onclick="goBack()">
+<input type="button" value="Back Home" onclick="goBack()">
         </div>
         </div>
     </div>
 </div>
-<script>
-function goBack() {
-  window.history.back()
-}
-</script>
+
 <% } else if (session.state.page == 'companylogin' && session.state.userType !== 'user') { %>
     <% console.log(session.state,'jrkgerhrefe'); %>
  <div class="loginLayout">
@@ -84,16 +86,12 @@ function goBack() {
         <div class="footerLogin">
             <div>By clicking continue, you agree to our</div>
             <div class="inlineFooterDiscription"><div>Terms of Service</div><div>and</div><div>Privacy Policy.</div>
-<input type="button" value="Back" onclick="goBack()">
+<input type="button" value="Back Home" onclick="goBack()">
         </div>
          </div>
      </div>
  </div>
-<script>
-function goBack() {
-  window.history.back()
-}
-</script>
+
  <% } else { %>
 <div class="loginLayout">
     <div class="auth">
@@ -129,9 +127,4 @@ function goBack() {
         </div>
     </div>
 </div>
-<script>
-function goBack() {
-  window.history.back()
-}
-</script>
 <% } %>
