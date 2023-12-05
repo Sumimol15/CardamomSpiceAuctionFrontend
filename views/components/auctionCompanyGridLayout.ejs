@@ -16,9 +16,15 @@
     </div>
     <div class="body ">
 <input type="date" id="dateSearch" placeholder="Select date">
- <% let currentDate = new Date(Date.now());%>
+
 <!-- auction -->
 <script>
+ let currentDate = new Date('<%= currentDate.toISOString() %>');
+document.getElementById('dateSearch').addEventListener('change', (event) => {
+console.log('reached')
+    const selectedDate = event.target.value;
+currentDate = new Date(selectedDate);
+  });
             <% for (const company of session.state.companies) { %>
               <% const companyStartDate = new Date(company.startDate);
               companyStartDate.setHours(0, 0, 0, 0);
@@ -67,12 +73,6 @@
     </div>
 </div>
 <script>
-<script>
-  document.getElementById('dateSearch').addEventListener('change', (event) => {
-console.log('reached')
-    const selectedDate = event.target.value;
-currentDate = new Date(selectedDate);
-  });
-</script>
+
 
 
