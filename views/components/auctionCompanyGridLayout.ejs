@@ -14,6 +14,7 @@
        <p style="color: rgb(214, 174, 174);">For Cardamon</p>
 </div>
     </div>
+<input type="date" id="dateSearch" placeholder="Select date">
     <div class="body ">
 
 <!-- auction -->
@@ -64,5 +65,16 @@
         </div>
     </div>
 </div>
+
+<script>
+  // Add an event listener to the date input for filtering
+  document.getElementById('dateSearch').addEventListener('change', (event) => {
+    // Redirect to the same page with the selected date as a query parameter
+    const selectedDate = event.target.value;
+    const currentUrl = window.location.href;
+    const updatedUrl = `${currentUrl}?dateSearch=${selectedDate}`;
+    window.location.replace(updatedUrl);
+  });
+</script>
 
 
