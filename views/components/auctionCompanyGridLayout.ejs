@@ -15,20 +15,12 @@
 </div>
     </div>
     <div class="body ">
-<input type="date" id="dateSearch" placeholder="Select date">
 
 <!-- auction -->
-<script>
- let currentDate = new Date();
-document.getElementById('dateSearch').addEventListener('change', (event) => {
-console.log('reached')
-    const selectedDate = event.target.value;
-currentDate = new Date(selectedDate);
-  });
             <% for (const company of session.state.companies) { %>
               <% const companyStartDate = new Date(company.startDate);
               companyStartDate.setHours(0, 0, 0, 0);
-             
+              const currentDate = new Date(Date.now());
               currentDate.setHours(0, 0, 0, 0);%>
                <% const companyEndDate = new Date(company.endDate);
                companyEndDate.setHours(0, 0, 0, 0);%>
@@ -72,7 +64,6 @@ currentDate = new Date(selectedDate);
         </div>
     </div>
 </div>
-<script>
 
 
 
