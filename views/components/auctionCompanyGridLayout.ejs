@@ -16,12 +16,12 @@
     </div>
     <div class="body ">
 <input type="date" id="dateSearch" placeholder="Select date">
-
+ <% let currentDate = new Date(Date.now());%>
 <!-- auction -->
             <% for (const company of session.state.companies) { %>
               <% const companyStartDate = new Date(company.startDate);
               companyStartDate.setHours(0, 0, 0, 0);
-              let currentDate = new Date(Date.now());
+             
               currentDate.setHours(0, 0, 0, 0);%>
                <% const companyEndDate = new Date(company.endDate);
                companyEndDate.setHours(0, 0, 0, 0);%>
@@ -69,7 +69,7 @@
 <script>
   document.getElementById('dateSearch').addEventListener('change', (event) => {
     const selectedDate = event.target.value;
-currentDate = selectedDate
+currentDate = new Date(selectedDate);
   });
 </script>
 
