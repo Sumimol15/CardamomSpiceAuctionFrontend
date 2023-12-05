@@ -21,7 +21,7 @@
             <% for (const company of session.state.companies) { %>
               <% const companyStartDate = new Date(company.startDate);
               companyStartDate.setHours(0, 0, 0, 0);
-              const currentDate = new Date(Date.now());
+              let currentDate = new Date(Date.now());
               currentDate.setHours(0, 0, 0, 0);%>
                <% const companyEndDate = new Date(company.endDate);
                companyEndDate.setHours(0, 0, 0, 0);%>
@@ -67,13 +67,9 @@
 </div>
 
 <script>
-  // Add an event listener to the date input for filtering
   document.getElementById('dateSearch').addEventListener('change', (event) => {
-    // Redirect to the same page with the selected date as a query parameter
     const selectedDate = event.target.value;
-    const currentUrl = window.location.href;
-    const updatedUrl = `${currentUrl}?dateSearch=${selectedDate}`;
-    window.location.replace(updatedUrl);
+currentDate = selectedDate
   });
 </script>
 
