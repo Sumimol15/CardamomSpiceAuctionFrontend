@@ -33,7 +33,7 @@
 <main>
     <section class="welcome">
        <div style="position: absolute; display: flex;flex-direction: column;justify-content: space-between;width: 100%;" class="borderStudio">
-        <div style="margin-top:10px;margin-left: 10px;position:absolute;width: 95%;height: 90%;" class="button-border-half"></div>
+        <div style="margin-top:10px;margin-left: 10px;position:absolute;width: 95%;height: 90%;" class="button-border-half" id="button-border-half"></div>
         <div class="threeD"></div>
         <div style="display: flex;justify-content: space-between; padding: 50px;">
           <div style="display: flex;flex-direction: column;z-index: 4;justify-content: flex-start;/* background-color: aliceblue; *//* width: 40%; */gap: 30px;">
@@ -153,8 +153,10 @@
 <script>
 
  const auctionTextForAuction = document.getElementById('auctionTextForAuction');
+const button-border-half = document.getElementById('button-border-half');
   const auctionText = document.getElementById('auctionText');
   if (window.innerWidth <= 810) {
+button-border-half.style.width = '88%';
     auctionText.style.fontSize = '40px';
 auctionTextForAuction.style.fontSize = '40px';
   }
