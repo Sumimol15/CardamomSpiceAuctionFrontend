@@ -1160,6 +1160,9 @@ input[type="text"]::placeholder {
   .hide-on-mobile {
     display:none
   }
+  .welcome {
+    height: 83vh;
+  }
 }
 
 
