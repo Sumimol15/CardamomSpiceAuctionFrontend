@@ -69,15 +69,17 @@
         <div>
             Home
         </div>
-        <div style=" background: linear-gradient(90deg, #7b54f2, #ff667e, #ffab6f);
+        <div id="auctionPageForMobiless" style=" background: linear-gradient(90deg, #7b54f2, #ff667e, #ffab6f);
         -webkit-background-clip: text;
         color: transparent; 
       ">
             Auction Center
         </div>
-        <div>
-            Profile
-        </div>
+<script>
+            document.getElementById('auctionPageForMobiless').addEventListener('click', () => {
+                 location.replace('/user/auction')
+             });
+       </script>
     </div>
    
 </div>
