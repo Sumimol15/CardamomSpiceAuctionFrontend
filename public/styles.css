@@ -1164,7 +1164,7 @@ input[type="text"]::placeholder {
     height: 83vh;
   }
   .threeD{
-    scale: 4
+    display:none
   }
 
 }
