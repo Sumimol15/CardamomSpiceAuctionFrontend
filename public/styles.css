@@ -1159,6 +1159,7 @@ input[type="text"]::placeholder {
   }
   .hide-on-mobile {
     display:none
+  }
 }
 
 
