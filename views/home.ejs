@@ -49,7 +49,7 @@
             font-size: 121px;
             color: #ffff;
             /* padding-left: 61px; */
-        " class="hide-on-mobile" id="auctionText">Auction</div>
+        " class="hide-on-mobile" id="auctionTextForAuction">Auction</div>
          <div style="display: flex;flex-direction: column;">
           <p style="display: flex;justify-content:flex-start;color: #fff;font-size:x-large;font-weight: 100;">
             Cardamom auction live  accross the world </p>
@@ -151,9 +151,12 @@
             });
           </script>
 <script>
+
+ const auctionTextForAuction = document.getElementById('auctionTextForAuction');
   const auctionText = document.getElementById('auctionText');
   if (window.innerWidth <= 810) {
     auctionText.style.display = 'none';
+auctionTextForAuction.style.display = 'none';
     auctionText.style.fontSize = 'xx-small';
   }
 </script>
