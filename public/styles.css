@@ -1166,6 +1166,10 @@ input[type="text"]::placeholder {
   .threeD{
     display:none
   }
+  .threeD2{
+    display:none
+  }
+
 
 }
 
