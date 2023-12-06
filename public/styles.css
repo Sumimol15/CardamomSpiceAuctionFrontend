@@ -1169,7 +1169,9 @@ input[type="text"]::placeholder {
   .threeD2{
     display:none
   }
-
+  .carousel{ width: 709px;
+    height: 500px;
+  }
 
 }
 
