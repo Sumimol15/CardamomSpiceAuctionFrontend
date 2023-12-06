@@ -33,7 +33,7 @@
 <main>
     <section class="welcome">
        <div style="position: absolute; display: flex;flex-direction: column;justify-content: space-between;width: 100%;" class="borderStudio">
-        <div style="margin-top:10px;margin-left: 10px;position:absolute;width: 95%;height: 90%;" class="button-border-half" id="button-border-halfs"></div>
+        <div style="margin-top:10px;margin-left: 10px;position:absolute;width: 95%;height: 90%;" class="button-border-half"></div>
         <div class="threeD"></div>
         <div style="display: flex;justify-content: space-between; padding: 50px;">
           <div style="display: flex;flex-direction: column;z-index: 4;justify-content: flex-start;/* background-color: aliceblue; *//* width: 40%; */gap: 30px;">
@@ -50,7 +50,7 @@
             color: #ffff;
             /* padding-left: 61px; */
         " class="hide-on-mobile" id="auctionTextForAuction">Auction</div>
-         <div style="display: flex;flex-direction: column;">
+         <div style="display: flex;flex-direction: column;" id="button-border-halfs">
           <p style="display: flex;justify-content:flex-start;color: #fff;font-size:x-large;font-weight: 100;">
             Cardamom auction live  accross the world </p>
             <p style="display: flex;justify-content:flex-start;color: #fff;font-size: larger;font-weight: 100;">
@@ -153,7 +153,7 @@
 <script>
   const button-border-halfs = document.getElementById('button-border-halfs');
   if (window.innerWidth <= 810) {
-    button-border-halfs.style.width = '88%';
+    button-border-halfs.style.width = 'max-content';
   }
 </script>
 <script>
