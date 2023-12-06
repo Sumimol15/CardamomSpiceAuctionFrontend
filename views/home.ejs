@@ -85,7 +85,7 @@
 
       <div style="display: flex;justify-content: space-between; padding: 50px;">
          <!-- corousel one -->
-        <section class="carousel" aria-label="Gallery" style="height: 100;width: 20%;">
+        <section class="carousel" aria-label="Gallery" style="height: 100;width: 20%;" id="newSliders">
           <% const numberOfSlides = 4; %>
           <ol class="carousel__viewport" id="carouselViewport">
             <% if (typeof ( session.state.homeSpice) !== 'undefined') { %>
@@ -159,10 +159,11 @@
 <script>
 
  const auctionTextForAuction = document.getElementById('auctionTextForAuction');
-
+const carousel = document.getElementById('newSliders');
   const auctionText = document.getElementById('auctionText');
   if (window.innerWidth <= 810) {
-
+carousel.style.width = '709px';
+carousel.style.height = '500px';
     auctionText.style.fontSize = '40px';
 auctionTextForAuction.style.fontSize = '40px';
 
