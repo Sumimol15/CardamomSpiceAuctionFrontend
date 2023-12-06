@@ -259,16 +259,16 @@ auctionTextForAuction.style.fontSize = '40px';
    <div style="display: flex;position:relative;background-color:black;width: 100%;height: 10px;z-index: 3;"></div>
    <div class="parent" style="position: absolute; z-index:5;">
     <div class="child_three"><div class="test"><div class="news" style="gap: 30px;display: flex;flex-direction: column; justify-content: center;align-items: center;padding: 20px;">
-      <div style="font-size: xx-large;color: green;" >About Us</div>
-      <p  style="color: green;font-size:large">One platform to connect growers company and sellers</p>
-      <p class="news"  style="color: green;font-size:large;">Which ensuring fair pricing, sustainability, and community growth.</p>
+      <div style="font-size: xx-large;color: green;" id="AboutsUs">About Us</div>
+      <p  style="color: green;font-size:large" id="AboutsUsSM1">One platform to connect growers company and sellers</p>
+      <p class="news"  style="color: green;font-size:large;" id="AboutsUsSM2">Which ensuring fair pricing, sustainability, and community growth.</p>
   </div></div>
         <div id="img_three"></div>
     </div>
     <div class="child_four"> <div class="test" >
       <div class="news" style="gap: 30px;display: flex;flex-direction: column; justify-content: center;align-items: center;padding: 20px;color: green;">
-        <div>CONTACT</div>
-      <div style="font-size:large;color:green">Please mail us at: cardamom@spiceauction.com</div>
+        <div id="Contact">CONTACT</div>
+      <div style="font-size:large;color:green" id="ContactSM1">Please mail us at: cardamom@spiceauction.com</div>
     </div>
      </div>
         <div id="img_four"></div>
@@ -345,7 +345,22 @@ auctionTextForAuction.style.fontSize = '40px';
       </aside>
     </section>
 </div> -->
+<script>
 
+ const AboutsUs = document.getElementById('AboutsUs');
+const Contact = document.getElementById('Contact');
+  const AboutsUsSM1 = document.getElementById('AboutsUsSM1');
+  const AboutsUsSM2 = document.getElementById('AboutsUsSM2');
+const ContactSM1 = document.getElementById('ContactSM1');
+const ContactSM2 = document.getElementById('ContactSM2');
+  if (window.innerWidth <= 810) {
+AboutsUs.style.fontSize =  'smaller';
+Contact.style.fontSize =  'smaller';
+    AboutsUsSM1.style.fontSize = 'x-smaller';
+AboutsUsSM1.style.fontSize = 'x-smaller';
+ ContactSM1.style.fontSize = 'x-smaller';
+  }
+</script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
