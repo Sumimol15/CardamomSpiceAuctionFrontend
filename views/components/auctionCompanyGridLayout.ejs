@@ -9,24 +9,22 @@
 
 <div class="layout" >
     <div class="header" style="background-image: url('../../public/nav2.svg');display: flex;flex-direction: column;gap: 10px;max-width: 300px;">
-      <div style="display: flex;flex-direction: column;gap: 5px;">
-        <div style="display: flex;gap: 5px;">
-          <input type="text" class="companyInput" name="companyName" placeholder="Search companies...">
-          <button class="searchButton">Search By Name of Company</button>
-        </div>
-        <div style="display: flex;gap: 5px;">
-          <div style="display: flex;flex-direction: column;">
-            By Start Date:
+     <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start;">
+  <div style="display: flex; gap: 10px;">
+    <input type="text" class="companyInput" name="companyName" placeholder="Search companies..." style="padding: 8px;">
+    <button class="searchButton" style="padding: 8px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">Search By Name</button>
+  </div>
+  
+  <div style="display: flex; gap: 10px;">
+    <div style="display: flex; flex-direction: column;">
+      <label for="startDateFilter" style="margin-bottom: 5px;">By Start Date:</label>
+      <input type="date" class="startDateFilter" name="startDateFilter" style="padding: 8px;">
+    </div>
+  </div>
+  
+  <button class="searchButtonAllS" style="padding: 8px; background-color: #007BFF; color: white; border: none; cursor: pointer;">Show All</button>
+</div>
 
-          </div>
-          <div style="display: flex;flex-direction: column;">
-            <input type="date" class="startDateFilter" name="startDateFilter" placeholder="Search companies...">
-
-          </div>
-        </div>
-     
-        <button class="searchButtonAllS">All</button>
-      </div>
       <div class="profileHeader" style="background-image: url('/public/backer.jpeg'); background-size: cover; background-repeat: no-repeat; background-position: center center; height: 100%;width: 100%;display: flex; justify-content: center;align-items: center; padding: 5px;border-radius: 6px;flex-direction: column; ">
 
        <h3 style="color: white;">All companies Listing </h3>
