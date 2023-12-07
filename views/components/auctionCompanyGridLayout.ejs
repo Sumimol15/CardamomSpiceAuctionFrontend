@@ -8,46 +8,116 @@
 
 
 <div class="layout" style="background-image: url('nav.svg');">
-    <div class="header" style="background-image: url('../../public/nav2.svg');">
+    <div class="header" style="background-image: url('../../public/nav2.svg');display: flex;flex-direction: column;gap: 10px;max-width: 300px;">
+      <div style="display: flex;flex-direction: column;gap: 5px;">
+        <div style="display: flex;gap: 5px;">
+          <input type="text" class="companyInput" name="companyName" placeholder="Search companies...">
+          <button class="searchButton">Search By Name of Company</button>
+        </div>
+        <div style="display: flex;gap: 5px;">
+          <div style="display: flex;flex-direction: column;">
+            By Start Date:
+
+          </div>
+          <div style="display: flex;flex-direction: column;">
+            <input type="date" class="startDateFilter" name="startDateFilter" placeholder="Search companies...">
+
+          </div>
+        </div>
+     
+        <button class="searchButtonAll">All</button>
+      </div>
       <div class="profileHeader" style="background-image: url('/public/backer.jpeg'); background-size: cover; background-repeat: no-repeat; background-position: center center; height: 100%;width: 100%;display: flex; justify-content: center;align-items: center; padding: 5px;border-radius: 6px;flex-direction: column; ">
 
        <h3 style="color: white;">All companies Listing </h3>
        <p style="color: rgb(214, 174, 174);">For Cardamon</p>
 </div>
     </div>
-    <div class="body ">
-      <div>
-        <input type="text" id="searchInput" placeholder="Search companies...">
-        <button onclick="searchCompanies()">Search By Name of Company</button>
-    </div>
+    <div class="body">
+
+
+
+
+<!-- auction -->
+
+
+<!-- Your JavaScript -->
+<script>
+  $(document).ready(function () {
+    $(".searchButton").click(async function () {
+      // Get the input value
+      const companyName = $(".companyInput").val();
+      const startDateFilter = $(".startDateFilter").val();
+
+      // Make an AJAX request to your server
+      $.get(`/user/auction/ajax?companyName=${companyName}&startDateFilter=${startDateFilter}`, function (data) {
+        // Update the search results dynamically
+        $(".searchResults").empty()
+
+$(".searchResults").html(data);
+
+// Log elements
+console.log('Elements with class:', elementsWithClass);
+      }).fail(function (error) {
+        console.error(`Error: ${error.statusText}`);
+      });
+    });
+  });
+</script>
+<script>
+  $(document).ready(function () {
+    $(".startDateFilter").change(async function () {
+      // Get the input value
+      const companyName = $(".companyInput").val();
+      const startDateFilter = $(".startDateFilter").val();
+
+      // Make an AJAX request to your server
+      $.get(`/user/auction/ajax?companyName=${companyName}&startDateFilter=${startDateFilter}`, function (data) {
+        // Update the search results dynamically
+        $(".searchResults").empty()
+
+$(".searchResults").html(data);
+
+// Log elements
+console.log('Elements with class:', elementsWithClass);
+      }).fail(function (error) {
+        console.error(`Error: ${error.statusText}`);
+      });
+    });
+  });
+</script>
+<script>
+  $(document).ready(function () {
+    $(".searchButtonAll").click(function () {
+      // Get the input value
+      const companyName = $(".companyInput").val();
+     
+
+      // Make an AJAX request to your server
+      $.get(`/user/auction/ajax?companyName`, function (data) {
+        // Update the search results dynamically
+        $(".searchResults").empty()
+
+$(".searchResults").html(data);
+
+// Log elements
+console.log('Elements with class:', elementsWithClass);
+      }).fail(function (error) {
+        console.error(`Error: ${error.statusText}`);
+      });
+    });
+  });
+</script>
+
+
 
 
     <% let companiesData = JSON.stringify(session.state.companies) %>
  
     
-    <!-- Your existing HTML content -->
+
     
-    <script>
-      function searchCompanies() {
-   
-        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-    
-        // Parse the string back to a JavaScript array
-        const companies = JSON.parse('<%- companiesData %>');
-    
-        // Loop through each company card and show/hide based on the search term
-        companies.forEach(function (company) {
-          const card = document.getElementById(company._id);
-          const companyName = company.companyName.toLowerCase();
-    
-          if (companyName.includes(searchTerm)) {
-            card.style.display = 'block'; 
-          } else {
-            card.style.display = 'none'; 
-          }
-        });
-      }
-    </script>
+  
 <!-- auction -->
             <% for (const company of session.state.companies) { %>
               <% const companyStartDate = new Date(company.startDate);
@@ -96,7 +166,6 @@
         </div>
     </div>
 </div>
-
 
 
 
