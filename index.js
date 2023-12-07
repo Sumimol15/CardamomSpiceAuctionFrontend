@@ -419,16 +419,77 @@ app.post('/company/spice/approve', async (req, res) => {
   }  
 });
 
-  /////////////auction\\\\\\\\\\\\\\\\\\
+   /////////////auction\\\\\\\\\\\\\\\\\\
   app.get('/user/auction', async (req, res) => {
     try {
-    const allAuctions = await  axios.get(`${process.env.DOMAIN}/auction/getAll`);
-    req.session.state.companies = await allAuctions.data.message;
-    res.status(200).render('auction',{session: req.session});
-  } catch (error) {
-      console.log(error.data);
-  }
+      console.log('reachwrkebc ');
+      // Fetch all auctions
+      const allAuctionsResponse = await axios.get(`${process.env.DOMAIN}/auction/getAll`);
+      const allAuctions = allAuctionsResponse.data.message;
+
+      req.session.state.companies =  allAuctions;
+  
+      res.status(200).render('auction', { session: req.session });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
   });
+
+
+app.get('/user/auction/ajax', async (req, res) => {
+  try {
+    console.log('reachwrkebc ');
+    const allAuctionsResponse = await axios.get(`${process.env.DOMAIN}/auction/getAll`);
+    const allAuctions = allAuctionsResponse.data.message;
+    let companyNameFilter = null;
+    let startDateFilter = null;
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+
+    if (req.query) {
+      console.log('called');
+      console.log(req.query);
+      companyNameFilter = req.query.companyName;
+      startDateFilter = req.query.startDateFilter;
+
+      if (companyNameFilter === '' && startDateFilter === '') {
+        companyNameFilter = null;
+        startDateFilter = null;
+      }
+    }
+
+    let filteredAuctions = allAuctions;
+    console.log(companyNameFilter);
+    if (companyNameFilter !== '') {
+      filteredAuctions = filteredAuctions.filter(auction => auction.companyName === companyNameFilter);
+    }
+
+    if (startDateFilter) {
+console.log(startDateFilter);
+console.log('called@');
+const filterDate = new Date(startDateFilter);
+if (!isNaN(filterDate.getTime())) { 
+  filteredAuctions = filteredAuctions.filter(auction => {
+    const auctionDate = new Date(auction.startDate);
+    console.log('Auction Date:', auctionDate.toLocaleDateString('en-US', options));
+    console.log('Filter Date:', filterDate.toLocaleDateString('en-US', options));
+    return auctionDate.toLocaleDateString('en-US', options) === filterDate.toLocaleDateString('en-US', options);
+  });
+  console.log('Filtered Auctions:', filteredAuctions);
+} else {
+  console.error('Invalid startDate:', startDateFilter);
+}
+    }
+
+    req.session.state.companies = filteredAuctions;
+
+    res.status(200).render('auction', { session: req.session });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 
   app.get('/user/auction/spice', async (req, res) => {
     try {
